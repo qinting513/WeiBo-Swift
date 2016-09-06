@@ -18,12 +18,17 @@ class WBHomeViewController: WBBaseViewController {
 //        模拟 ‘延时’加载 dispatch_after
        DispatchQueue.main.after(when: DispatchTime.now() + 2) {
                 for i in 0  ..< 15 {
-//                    if statusList.contains(i.description) {
-//                        continue
-//                    }
 //                    在闭包中要加上self，指定语境
-//                    self.statusList.insert(i.description, at: 0)
-                    self.statusList.append(i.description)
+                    if self.isPullup {
+//                    如果是上拉刷新 将数据追加到底部
+                        self.statusList.append("上拉刷新 --- \(i)")
+
+                    }else{
+//                    下拉刷新
+                        self.statusList.insert("\(i)", at: 0)
+                    }
+ //                    恢复上拉刷新标记
+                    self.isPullup = false
                     self.tableView?.reloadData()
                     self.refreshControl?.endRefreshing()
                 }

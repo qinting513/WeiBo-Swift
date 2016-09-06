@@ -125,6 +125,8 @@ extension WBBaseViewController {
         //        判断最后一行,同时没有上拉刷新
         if row == (count - 1) && !isPullup {
         print("上拉刷新")
+            self.isPullup = true
+            self.loadData()
         }
         
     }
