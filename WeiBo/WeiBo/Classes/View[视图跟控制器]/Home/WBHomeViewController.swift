@@ -27,11 +27,11 @@ class WBHomeViewController: WBBaseViewController {
 //                    下拉刷新
                         self.statusList.insert("\(i)", at: 0)
                     }
- //                    恢复上拉刷新标记
-                    self.isPullup = false
-                    self.tableView?.reloadData()
-                    self.refreshControl?.endRefreshing()
                 }
+        //                    恢复上拉刷新标记
+        self.isPullup = false
+        self.tableView?.reloadData()
+        self.refreshControl?.endRefreshing()
                print( self.statusList)
         }
         
