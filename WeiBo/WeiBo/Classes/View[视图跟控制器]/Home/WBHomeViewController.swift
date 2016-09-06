@@ -15,9 +15,10 @@ class WBHomeViewController: WBBaseViewController {
     private lazy var statusList = [String]()
     
     override func loadData() {
+        
         for i in 0  ..< 20 {
             if statusList.contains(i.description) {
-            continue
+                  continue
             }
         statusList.insert(i.description, at: 0)
         }
@@ -47,10 +48,7 @@ extension WBHomeViewController {
 
 //MARK: - 重写 tableView DataSource 方法，不需要super
 extension WBHomeViewController{
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1;
-//    }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          return statusList.count
     }

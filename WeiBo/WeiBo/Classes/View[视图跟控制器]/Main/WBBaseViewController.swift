@@ -20,6 +20,9 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     //    如果用户没有登录 则不创建
     var tableView : UITableView?
     
+//    添加刷新控件
+    var refreshControl : UIRefreshControl?
+    
 // MARK:-   隐藏系统的后，自定义导航栏
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main().bounds.size.width, height: 64))
     
@@ -69,6 +72,12 @@ extension WBBaseViewController {
                                                left: 0,
                                                bottom: tabBarController?.tabBar.bounds.height ??  49 ,
                                                 right: 0)
+        
+//        设置刷新控件
+        refreshControl = UIRefreshControl()
+        tableView?.addSubview(refreshControl!)
+//        添加监听方法
+        refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
     }
     
 //    MARK: - 设置导航条
