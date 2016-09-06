@@ -12,24 +12,21 @@ class WBBaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+          setupUI()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+//设置界面
+extension WBBaseViewController {
+
+     func setupUI() {
+           view.backgroundColor = UIColor.yellowColor()
+        let color0:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
+        let color1:CGFloat = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
+        let color2:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
+        view.backgroundColor = UIColor(red: color0, green: color1, blue: color2, alpha: 1.0)
     }
-    */
 
 }

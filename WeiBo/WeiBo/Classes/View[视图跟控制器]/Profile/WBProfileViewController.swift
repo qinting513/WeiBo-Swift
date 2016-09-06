@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WBProfileViewController: UIViewController {
+class WBProfileViewController: WBBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

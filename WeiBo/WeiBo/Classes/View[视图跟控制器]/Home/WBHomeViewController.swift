@@ -8,28 +8,26 @@
 
 import UIKit
 
-class WBHomeViewController: UIViewController {
+class WBHomeViewController: WBBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    /**  private 使私有化，@objc 使运行时可以来调用此方法 */
+   @objc private func showFriends( ) {
+          navigationController?.pushViewController(WBTestViewController(), animated: true)
+    }
+
+
+}
+
+extension WBHomeViewController {
+    override func setupUI() {
+        //        重写前要先重写父类的方法
+        super.setupUI()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationbar_friendattention"), style: .Plain, target: self, action: #selector(WBHomeViewController.showFriends))
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
