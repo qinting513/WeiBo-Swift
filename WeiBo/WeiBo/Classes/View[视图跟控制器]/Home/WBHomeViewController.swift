@@ -15,14 +15,21 @@ class WBHomeViewController: WBBaseViewController {
     private lazy var statusList = [String]()
     
     override func loadData() {
-        
-        for i in 0  ..< 20 {
-            if statusList.contains(i.description) {
-                  continue
-            }
-        statusList.insert(i.description, at: 0)
+//        模拟 ‘延时’加载 dispatch_after
+       DispatchQueue.main.after(when: DispatchTime.now() + 2) {
+                for i in 0  ..< 15 {
+//                    if statusList.contains(i.description) {
+//                        continue
+//                    }
+//                    在闭包中要加上self，指定语境
+//                    self.statusList.insert(i.description, at: 0)
+                    self.statusList.append(i.description)
+                    self.tableView?.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
+               print( self.statusList)
         }
-        print( statusList)
+        
     }
     
     override func viewDidLoad() {

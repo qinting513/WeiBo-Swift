@@ -17,11 +17,13 @@ import UIKit
 
 //主控制机器基类
 class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewDelegate {
+    
     //    如果用户没有登录 则不创建
     var tableView : UITableView?
-    
 //    添加刷新控件
     var refreshControl : UIRefreshControl?
+//    上拉刷新标记
+    var isPullup = false
     
 // MARK:-   隐藏系统的后，自定义导航栏
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main().bounds.size.width, height: 64))
@@ -32,7 +34,7 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
           setupUI()
-        loadData()
+//        loadData()
     }
     
 //MARK: -    重写title  的 setter方法
@@ -109,4 +111,23 @@ extension WBBaseViewController {
 //        只是保证没有语法错误
         return UITableViewCell()
     }
+    
+    /// 在显示最后一行的时候做上拉刷新
+    @objc(tableView:willDisplayCell:forRowAtIndexPath:) func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        判断是最后分区 最后一行
+        let row = indexPath.row
+        let section = tableView.numberOfSections - 1
+        if row < 0 || section < 0 {
+              return
+        }
+
+        let count = tableView.numberOfRows(inSection: section)
+        //        判断最后一行,同时没有上拉刷新
+        if row == (count - 1) && !isPullup {
+        print("上拉刷新")
+        }
+        
+    }
+    
+    
 }
