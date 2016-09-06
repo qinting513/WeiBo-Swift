@@ -39,6 +39,7 @@ extension WBBaseViewController {
 //        设置导航项
         navigationBar.items = [naviItem]
         navigationBar.barTintColor = UIColor(white: 0xF6F6F6, alpha: 1.0)
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGrayColor()]
     }
 
 

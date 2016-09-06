@@ -23,16 +23,16 @@ extension UIBarButtonItem {
     }
     
     convenience init(imageName:String, highlightImageName:String,target:AnyObject?,  action:Selector){
-        self.init(imageName:imageName, highlightImageName:highlightImageName,bgImageName:nil, highlightBgImageName:nil,  target:target,  action:action)
+        self.init(imageName:imageName, highlightImageName:highlightImageName,bgImageName:nil, highlightedBgImageName:nil,  target:target,  action:action)
     }
     
-    convenience init( imageName:String, highlightImageName:String, bgImageName:String?,  highlightBgImageName:String?,  target:AnyObject?,  action:Selector){
+    convenience init( imageName:String, highlightImageName:String, bgImageName:String?,  highlightedBgImageName:String?,  target:AnyObject?,  action:Selector){
         let button : UIButton = UIButton(type: .Custom)
         button.setImage(UIImage(named:imageName ), forState: .Normal)
         button.setImage(UIImage(named:highlightImageName ), forState: .Highlighted)
         
 //        使用if let  后必定是有值的
-        if let bgImageName = bgImageName, highlightBgImageName = highlightBgImageName {
+        if let bgImageName = bgImageName, highlightBgImageName = highlightedBgImageName {
             button.setBackgroundImage(UIImage(named: bgImageName), forState: .Normal)
             button.setBackgroundImage(UIImage(named:highlightBgImageName), forState: .Normal)
         }

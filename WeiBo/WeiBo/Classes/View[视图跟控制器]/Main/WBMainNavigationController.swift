@@ -30,7 +30,13 @@ class WBMainNavigationController: UINavigationController {
             backBtn.setImage(UIImage(named: "navigationbar_back_withtext"), forState: .Normal)
             backBtn.setImage(UIImage(named: "navigationbar_back_withtext_highlighted"), forState: .Highlighted)
             backBtn.contentHorizontalAlignment = .Left
-            backBtn.setTitle( childViewControllers.first?.title, forState: .Normal)
+            
+            var title = "返回"
+//           判断控制器的级数，只有一个子控制器的时候，显示栈底控制器的标题
+            if  childViewControllers.count == 1 {
+                  title = childViewControllers.first?.title ??  "返回"
+            }
+            backBtn.setTitle(title, forState: .Normal)
             backBtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
             backBtn.setTitleColor(UIColor.orangeColor(), forState: .Highlighted)
             backBtn.bounds = CGRect(x: 0, y: 0, width: 70, height: 30)
