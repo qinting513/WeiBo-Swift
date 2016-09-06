@@ -28,8 +28,9 @@ class WBMainTabBarController: UITabBarController {
     print("撰写weibo")
     }
 
-//    私有控件
-    private lazy var composeButton : UIButton = UIButton.qt_imageButton("tabbar_compose_icon_add", backgroundImageName: "tabbar_compose_button")
+//    私有控件 
+    private lazy var composeButton : UIButton = UIButton.qt_imageButton("tabbar_compose_icon_add", highlightedImageName: "tabbar_compose_button")
+    
 }
 
 //通过分类 进行优化
@@ -86,7 +87,7 @@ extension WBMainTabBarController {
         vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: .Highlighted)
         
 //        设置正常状态下的字体大小 系统默认是12，swift3.0 没有 Normal  设置 UIControlState(rawValue: 0) 就是normal状态
-        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(14)], forState: UIControlState(rawValue: 0) )
+        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(12)], forState: UIControlState(rawValue: 0) )
         
         
 //        嵌套一个导航控制器

@@ -10,11 +10,22 @@ import UIKit
 
 class WBBaseViewController: UIViewController {
 
+    lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 64))
+    
+//    自定义的导航项
+    lazy var naviItem = UINavigationItem()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
           setupUI()
     }
-
+    
+//    重写title  的 setter方法
+    override var title: String? {
+        didSet{
+      naviItem.title = title
+        }
+    }
 
 }
 
@@ -22,11 +33,13 @@ class WBBaseViewController: UIViewController {
 extension WBBaseViewController {
 
      func setupUI() {
-           view.backgroundColor = UIColor.yellowColor()
-        let color0:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let color1:CGFloat = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let color2:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        view.backgroundColor = UIColor(red: color0, green: color1, blue: color2, alpha: 1.0)
+//        添加一个导航栏
+        view.backgroundColor = UIColor().randomColor()
+        view.addSubview(navigationBar)
+//        设置导航项
+        navigationBar.items = [naviItem]
+        navigationBar.barTintColor = UIColor(white: 0xF6F6F6, alpha: 1.0)
     }
+
 
 }

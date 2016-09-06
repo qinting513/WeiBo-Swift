@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B761D5FC1D7E5D1000C746A9 /* WBTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761D5FB1D7E5D1000C746A9 /* WBTestViewController.swift */; };
+		B761D5FE1D7E602400C746A9 /* UIBarButtonItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761D5FD1D7E602400C746A9 /* UIBarButtonItem+Extension.swift */; };
+		B761D6001D7E86D900C746A9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */; };
 		B7DDA0C91D7DCA33005BE7FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */; };
 		B7DDA0D01D7DCA33005BE7FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */; };
 		B7DDA0D31D7DCA33005BE7FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0D11D7DCA33005BE7FD /* LaunchScreen.storyboard */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		B761D5FB1D7E5D1000C746A9 /* WBTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBTestViewController.swift; sourceTree = "<group>"; };
+		B761D5FD1D7E602400C746A9 /* UIBarButtonItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Extension.swift"; sourceTree = "<group>"; };
+		B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B7DDA0C51D7DCA33005BE7FD /* WeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,7 +130,6 @@
 			children = (
 				B7DDA0E01D7DD0D2005BE7FD /* Main */,
 				B7DDA0DE1D7DD0D2005BE7FD /* Discover */,
-				B7DDA0DF1D7DD0D2005BE7FD /* Home */,
 				B7DDA0E11D7DD0D2005BE7FD /* Message */,
 				B7DDA0E21D7DD0D2005BE7FD /* Profile */,
 			);
@@ -146,7 +149,8 @@
 			children = (
 				B7DDA0FA1D7DD2DD005BE7FD /* WBHomeViewController.swift */,
 			);
-			path = Home;
+			name = Home;
+			path = ../Home;
 			sourceTree = "<group>";
 		};
 		B7DDA0E01D7DD0D2005BE7FD /* Main */ = {
@@ -163,6 +167,7 @@
 		B7DDA0E11D7DD0D2005BE7FD /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				B7DDA0DF1D7DD0D2005BE7FD /* Home */,
 				B7DDA0FC1D7DD2E7005BE7FD /* WBMessageViewController.swift */,
 			);
 			path = Message;
@@ -210,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */,
+				B761D5FD1D7E602400C746A9 /* UIBarButtonItem+Extension.swift */,
+				B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -295,7 +302,9 @@
 				B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */,
 				B761D5FC1D7E5D1000C746A9 /* WBTestViewController.swift in Sources */,
 				B7DDA1131D7DD99C005BE7FD /* Bundle+Extension.swift in Sources */,
+				B761D6001D7E86D900C746A9 /* UIColor+Extension.swift in Sources */,
 				B7DDA0F51D7DD2B9005BE7FD /* WBMainNavigationController.swift in Sources */,
+				B761D5FE1D7E602400C746A9 /* UIBarButtonItem+Extension.swift in Sources */,
 				B7DDA10D1D7DD5AF005BE7FD /* NSObject+Parse.m in Sources */,
 				B7DDA0C91D7DCA33005BE7FD /* AppDelegate.swift in Sources */,
 				B7DDA0F31D7DD2A3005BE7FD /* WBMainTabBarController.swift in Sources */,

@@ -27,7 +27,8 @@ extension WBHomeViewController {
     override func setupUI() {
         //        重写前要先重写父类的方法
         super.setupUI()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationbar_friendattention"), style: .Plain, target: self, action: #selector(WBHomeViewController.showFriends))
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationbar_friendattention"), style: .Plain, target: self, action: #selector(WBHomeViewController.showFriends))
+        naviItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", highlightImageName: "navigationbar_friendattention_highlighted", target: self, action: #selector(WBHomeViewController.showFriends))
     }
     
 }

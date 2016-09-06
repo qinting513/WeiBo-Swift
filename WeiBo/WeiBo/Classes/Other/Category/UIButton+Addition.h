@@ -15,8 +15,8 @@
  *
  *  @param title                显示的标题
  *  @param fontSize         字体大小
- *  @param normalColor      默认颜色
- *  @param highlightedColor 高亮颜色
+ *  @param normalColor      默认字体颜色
+ *  @param highlightedColor 高亮字体颜色
  *
  *  @return UIButton
  */
@@ -28,13 +28,16 @@
  *
  *  @param title                显示的标题
  *  @param fontSize         字体大小
- *  @param normalColor      默认颜色
- *  @param highlightedColor 高亮颜色
+ *  @param normalColor      默认字体颜色
+ *  @param highlightedColor 高亮字体颜色
  *  @param backgroundImageName 背景图片
+ *  @param bgHighlightImageName 背景高亮时的图片
  *
  *  @return UIButton
  */
-+ (instancetype)qt_textButton:(NSString*)title fontSize:(CGFloat)fontSize normalColor:(UIColor*)normalColor highlightedColor:(UIColor *)highlightedColor backgroundImageName:(NSString *)backgroundImageName;
+
++ (instancetype)qt_textButton:(NSString*)title fontSize:(CGFloat)fontSize normalColor:(UIColor*)normalColor highlightedColor:(UIColor *)highlightedColor backgroundImageName:(NSString *)backgroundImageName  backgroundHighlightImageName:(NSString *)bgHighlightImageName;
+
 
 /**
  *  创建图像按钮
@@ -44,6 +47,8 @@
  *
  *  @return UIButton
  */
-+ (instancetype)qt_imageButton:(NSString *)imageName  backgroundImageName:(NSString *)backgroundImageName;
++ (instancetype)qt_imageButton:(NSString *)imageName  highlightedImageName:(NSString *)highlightedImageName;
+
++ (instancetype)qt_imageButton:(NSString *)imageName  highlightedImageName:(NSString *)highlightedImageName backgroundImageName:(NSString *)backgroundImageName  bgHighlightedImageName:(NSString *)bgHighlightedImageName;
 
 @end

@@ -13,7 +13,7 @@ class WBTestViewController: WBBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "第\(navigationController?.childViewControllers.count ?? 0)个"
-        
+  
     }
     
     @objc private func nextVC () {
@@ -28,6 +28,9 @@ extension WBTestViewController {
     override func setupUI() {
         //        重写前要先重写父类的方法
         super.setupUI()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "下一个", style: .Plain, target: self, action: #selector(WBTestViewController.nextVC))
+        naviItem.rightBarButtonItem = UIBarButtonItem(title: "下一个", fontSize: 15, normalColor: UIColor.darkGrayColor(), highlightedColor: UIColor.orangeColor(), target: self, action: #selector(WBTestViewController.nextVC))
+//        let btn : UIButton  = UIButton.qt_textButton("next", fontSize: 16, normalColor: UIColor.darkGrayColor(), highlightedColor: UIColor.orangeColor())
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
+        
     }
 }
