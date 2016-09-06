@@ -9,11 +9,12 @@
 import UIKit
 
 extension UIColor {
-    func randomColor() -> UIColor {
-        let color0:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let color1:CGFloat = CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        let color2:CGFloat =  CGFloat(CGFloat(random())/CGFloat(RAND_MAX))
-        return UIColor(red: color0, green: color1, blue: color2, alpha: 1.0)
+         class  func randomColor() -> UIColor {
+//             red  = CGFloat0 / CGFloat 1  2个CGFloat数值比较
+            let red = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+            let green = CGFloat( arc4random_uniform(255))/CGFloat(255.0)
+            let blue = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+            return UIColor.init(red:red, green:green, blue:blue , alpha: 1)
     }
 
 }

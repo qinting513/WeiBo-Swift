@@ -11,13 +11,13 @@ import UIKit
 extension UIBarButtonItem {
     
     convenience init(title:String, fontSize:CGFloat = 16.0,normalColor:UIColor, highlightedColor:UIColor,  target:AnyObject?,  action:Selector ) {
-        let button : UIButton = UIButton(type: .Custom)
-        button.setTitle(title, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(fontSize)
-        button.setTitleColor(normalColor, forState: .Normal)
-        button.setTitleColor(highlightedColor, forState: .Highlighted)
+        let button : UIButton = UIButton(type: .custom)
+        button.setTitle(title, for: UIControlState())
+        button.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
+        button.setTitleColor(normalColor, for: UIControlState())
+        button.setTitleColor(highlightedColor, for: .highlighted)
         button.sizeToFit()
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
 //        实例化
         self.init(customView: button)
     }
@@ -27,17 +27,17 @@ extension UIBarButtonItem {
     }
     
     convenience init( imageName:String, highlightImageName:String, bgImageName:String?,  highlightedBgImageName:String?,  target:AnyObject?,  action:Selector){
-        let button : UIButton = UIButton(type: .Custom)
-        button.setImage(UIImage(named:imageName ), forState: .Normal)
-        button.setImage(UIImage(named:highlightImageName ), forState: .Highlighted)
+        let button : UIButton = UIButton(type: .custom)
+        button.setImage(UIImage(named:imageName ), for: UIControlState())
+        button.setImage(UIImage(named:highlightImageName ), for: .highlighted)
         
 //        使用if let  后必定是有值的
         if let bgImageName = bgImageName, highlightBgImageName = highlightedBgImageName {
-            button.setBackgroundImage(UIImage(named: bgImageName), forState: .Normal)
-            button.setBackgroundImage(UIImage(named:highlightBgImageName), forState: .Normal)
+            button.setBackgroundImage(UIImage(named: bgImageName), for: UIControlState())
+            button.setBackgroundImage(UIImage(named:highlightBgImageName), for: UIControlState())
         }
         button.sizeToFit()
-        button.addTarget(target, action: action, forControlEvents: .TouchUpInside)
+        button.addTarget(target, action: action, for: .touchUpInside)
         //        实例化
         self.init(customView: button)
     }

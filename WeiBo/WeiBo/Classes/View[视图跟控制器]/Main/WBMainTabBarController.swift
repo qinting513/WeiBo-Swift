@@ -19,6 +19,10 @@ class WBMainTabBarController: UITabBarController {
         setupComposeButton()
     }
     
+    override func  supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
 //    MARK: 撰写按钮 事件
 //    FIXME:没有实现
     /** private 保证方法私有，只能当前控制器可以访问，
@@ -26,6 +30,12 @@ class WBMainTabBarController: UITabBarController {
      */
  @objc  private func composeButtonStatus( ) {
     print("撰写weibo")
+    
+//    test code
+    let vc = UIViewController()
+    vc.view.backgroundColor = UIColor.randomColor()
+    let nav = UINavigationController(rootViewController: vc)
+    present(nav, animated: true, completion: nil)
     }
 
 //    私有控件 
@@ -48,7 +58,7 @@ extension WBMainTabBarController {
         composeButton.frame = tabBar.bounds.insetBy(dx: 2*w, dy: 0)
 //        print("撰写按钮宽度\(composeButton.bounds.size.width)") 
 //        按钮的监听方法
-        composeButton.addTarget(self, action: #selector(WBMainTabBarController.composeButtonStatus), forControlEvents: .TouchUpInside)
+        composeButton.addTarget(self, action: #selector(WBMainTabBarController.composeButtonStatus), for: .touchUpInside)
     }
     
 //设置所有子控制器
@@ -70,24 +80,25 @@ extension WBMainTabBarController {
     /** 使用一个字典 创建一个子控制器 
      * 信息字典  [clsName, title, imageName]
      */
-    private func controller( dict dict: [String : String] ) -> UIViewController {
+    private func controller( dict: [String : String] ) -> UIViewController {
+//        guard let 进行判断
     guard let clsName = dict["clsName"],
         title = dict["title"],
         imageName = dict["imageName"],
-        cls = NSClassFromString(NSBundle.mainBundle().namespace + "." + clsName) as? UIViewController.Type  else{
+        cls = NSClassFromString(Bundle.main().namespace + "." + clsName) as? UIViewController.Type  else{
         return UIViewController()
         }
 //         create vc
         let  vc = cls.init()
         vc.title = title
         vc.tabBarItem.image = UIImage(named: "tabbar_" +  imageName)
-        vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" +  imageName + "_selected")?.imageWithRenderingMode(.AlwaysOriginal)
+        vc.tabBarItem.selectedImage = UIImage(named: "tabbar_" +  imageName + "_selected")?.withRenderingMode(.alwaysOriginal)
         
 //      设置高亮时的字体
-        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orangeColor()], forState: .Highlighted)
+        vc.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.orange()], for: .highlighted)
         
 //        设置正常状态下的字体大小 系统默认是12，swift3.0 没有 Normal  设置 UIControlState(rawValue: 0) 就是normal状态
-        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFontOfSize(12)], forState: UIControlState(rawValue: 0) )
+        vc.tabBarItem.setTitleTextAttributes([NSFontAttributeName : UIFont.systemFont(ofSize: 12)], for: UIControlState(rawValue: 0) )
         
         
 //        嵌套一个导航控制器

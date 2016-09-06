@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSBundle{
+extension Bundle{
 
     var namespace : String {
 //        计算属性 类似于函数，没有参数 只有返回值 

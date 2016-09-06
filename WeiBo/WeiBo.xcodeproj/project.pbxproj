@@ -129,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				B7DDA0E01D7DD0D2005BE7FD /* Main */,
+				B7DDA0DF1D7DD0D2005BE7FD /* Home */,
 				B7DDA0DE1D7DD0D2005BE7FD /* Discover */,
 				B7DDA0E11D7DD0D2005BE7FD /* Message */,
 				B7DDA0E21D7DD0D2005BE7FD /* Profile */,
@@ -149,8 +150,7 @@
 			children = (
 				B7DDA0FA1D7DD2DD005BE7FD /* WBHomeViewController.swift */,
 			);
-			name = Home;
-			path = ../Home;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		B7DDA0E01D7DD0D2005BE7FD /* Main */ = {
@@ -167,7 +167,6 @@
 		B7DDA0E11D7DD0D2005BE7FD /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				B7DDA0DF1D7DD0D2005BE7FD /* Home */,
 				B7DDA0FC1D7DD2E7005BE7FD /* WBMessageViewController.swift */,
 			);
 			path = Message;
@@ -255,6 +254,7 @@
 					B7DDA0C41D7DCA33005BE7FD = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = CW23JJ23BD;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -420,6 +420,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeiBo/Classes/Other/Category/WeiBo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -434,6 +435,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = QT.WeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WeiBo/Classes/Other/Category/WeiBo-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

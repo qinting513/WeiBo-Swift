@@ -28,9 +28,6 @@ extension WBTestViewController {
     override func setupUI() {
         //        重写前要先重写父类的方法
         super.setupUI()
-        naviItem.rightBarButtonItem = UIBarButtonItem(title: "下一个", fontSize: 15, normalColor: UIColor.darkGrayColor(), highlightedColor: UIColor.orangeColor(), target: self, action: #selector(WBTestViewController.nextVC))
-//        let btn : UIButton  = UIButton.qt_textButton("next", fontSize: 16, normalColor: UIColor.darkGrayColor(), highlightedColor: UIColor.orangeColor())
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btn)
-        
-    }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "下一个", fontSize: 15, normalColor: UIColor.darkGray(), highlightedColor: UIColor.orange(), target: self, action: #selector(WBTestViewController.nextVC))
+       }
 }

@@ -10,9 +10,13 @@ import UIKit
 
 class WBBaseViewController: UIViewController {
 
-    lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: 64))
+    //    如果用户没有登录 则不创建
+    var tableView : UITableView?
     
-//    自定义的导航项
+// MARK:-   隐藏系统的后，自定义导航栏
+    lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main().bounds.size.width, height: 64))
+    
+// MARK: -   自定义的导航项
     lazy var naviItem = UINavigationItem()
     
     override func viewDidLoad() {
@@ -20,7 +24,7 @@ class WBBaseViewController: UIViewController {
           setupUI()
     }
     
-//    重写title  的 setter方法
+//MARK: -    重写title  的 setter方法
     override var title: String? {
         didSet{
       naviItem.title = title
@@ -33,14 +37,26 @@ class WBBaseViewController: UIViewController {
 extension WBBaseViewController {
 
      func setupUI() {
-//        添加一个导航栏
-        view.backgroundColor = UIColor().randomColor()
-        view.addSubview(navigationBar)
-//        设置导航项
-        navigationBar.items = [naviItem]
-        navigationBar.barTintColor = UIColor(white: 0xF6F6F6, alpha: 1.0)
-        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGrayColor()]
+        view.backgroundColor = UIColor.randomColor()
+        setupNavi()
+        setupTableView()
     }
-
+    
+    private func setupTableView(){
+    
+    }
+    
+    private func setupNavi(){
+        //        添加一个导航栏
+        view.addSubview(navigationBar)
+        //        设置导航项
+        navigationBar.items = [naviItem]
+        //        设置naviBar的 背景 渲染颜色
+        navigationBar.barTintColor = UIColor(white: 0xF6F6F6, alpha: 1.0)
+        //        设置naviBar的 barButton 文字渲染颜色
+        navigationBar.tintColor = UIColor.orange()
+        //        设置naviBar的 标题字体颜色
+        navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.darkGray()]
+    }
 
 }
