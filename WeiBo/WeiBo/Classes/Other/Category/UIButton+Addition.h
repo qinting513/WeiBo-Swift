@@ -45,4 +45,5 @@
  *  @return UIButton
  */
 + (instancetype)qt_imageButton:(NSString *)imageName  backgroundImageName:(NSString *)backgroundImageName;
+
 @end
