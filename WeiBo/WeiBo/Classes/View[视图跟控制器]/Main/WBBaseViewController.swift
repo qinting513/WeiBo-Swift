@@ -29,6 +29,7 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
           setupUI()
+        loadData()
     }
     
 //MARK: -    重写title  的 setter方法
@@ -36,6 +37,11 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
         didSet{
       naviItem.title = title
         }
+    }
+    
+//    加载数据  具体的实现由子类负责
+    func  loadData() {
+    
     }
 
 }
@@ -55,6 +61,14 @@ extension WBBaseViewController {
         view.insertSubview(tableView!, belowSubview: navigationBar)
         tableView?.dataSource = self
         tableView?.delegate = self
+        
+//        取消自动缩进 如果隐藏了导航栏会缩进 20 个点
+        automaticallyAdjustsScrollViewInsets = false
+//        设置内容缩进
+        tableView?.contentInset = UIEdgeInsets(top: navigationBar.bounds.height,
+                                               left: 0,
+                                               bottom: tabBarController?.tabBar.bounds.height ??  49 ,
+                                                right: 0)
     }
     
 //    MARK: - 设置导航条
@@ -74,12 +88,15 @@ extension WBBaseViewController {
 }
 
 extension WBBaseViewController {
-
+    @objc(numberOfSectionsInTableView:) func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
 //    基类只是准备方法，子类负责具体实现，子类的数据源方法不需要super
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  @objc(tableView:cellForRowAtIndexPath:)  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        只是保证没有语法错误
         return UITableViewCell()
     }

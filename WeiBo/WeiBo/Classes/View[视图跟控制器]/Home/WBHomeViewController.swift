@@ -8,27 +8,56 @@
 
 import UIKit
 
-class WBHomeViewController: WBBaseViewController {
+private let cellID = "HomeCell"
 
+class WBHomeViewController: WBBaseViewController {
+//微博数据数组，懒加载
+    private lazy var statusList = [String]()
+    
+    override func loadData() {
+        for i in 0  ..< 20 {
+            if statusList.contains(i.description) {
+            continue
+            }
+        statusList.insert(i.description, at: 0)
+        }
+        print( statusList)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        loadData()
     }
 
     /**  private 使私有化，@objc 使运行时可以来调用此方法 */
    @objc private func showFriends( ) {
           navigationController?.pushViewController(WBTestViewController(), animated: true)
     }
-
-
 }
 
 extension WBHomeViewController {
     override func setupUI() {
         //        重写前要先重写父类的方法
         super.setupUI()
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationbar_friendattention"), style: .Plain, target: self, action: #selector(WBHomeViewController.showFriends))
         naviItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", highlightImageName: "navigationbar_friendattention_highlighted", target: self, action: #selector(WBHomeViewController.showFriends))
+  
+        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+    }
+}
+
+//MARK: - 重写 tableView DataSource 方法，不需要super
+extension WBHomeViewController{
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1;
+//    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return statusList.count
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+           cell.textLabel?.text = statusList[indexPath.row]
+            return cell
+    }
 }
