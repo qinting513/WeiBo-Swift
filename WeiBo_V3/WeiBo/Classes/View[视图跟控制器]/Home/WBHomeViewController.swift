@@ -15,18 +15,7 @@ class WBHomeViewController: WBBaseViewController {
     private lazy var statusList = [String]()
     
     override func loadData() {
-//        let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
-//        let params = ["access_token" : "2.00_26_KC0OvKcC26c31896fboBoooD"]
-////        WBNetworkManager.shared.get(urlString, parameters: params, progress: nil, success: { (_, json) in
-////            print(json)
-////        }) { (_, error) in
-////            print(error)
-////        }
-//        WBNetworkManager.shared.request(method: .GET, urlString: urlString, parameters: params) { (json, isSuccess) in
-//            if isSuccess && json != nil {
-//            print(json)
-//            }
-//        }
+
         WBNetworkManager.shared.statusList { (list, isSuccess) in
                       print(list)
         }
