@@ -63,8 +63,10 @@ extension WBMainTabBarController {
     
 //设置所有子控制器
     private func setupChildControllers() {
-    let array = [
-        ["clsName":"WBHomeViewController",      "title":"首页",   "imageName": "home"],
+        let array : [ [String:AnyObject] ] = [
+        ["clsName":"WBHomeViewController",    "title":"首页",   "imageName": "home",
+            "visitorInfo" : ["imageName":"", "message": ""]
+         ],
         ["clsName":"WBMessageViewController",  "title":"消息",    "imageName": "message_center"],
         ["clsName" : "UIViewController"],
         ["clsName":"WBDiscoverViewController",  "title":"发现",   "imageName": "discover"],
@@ -80,11 +82,11 @@ extension WBMainTabBarController {
     /** 使用一个字典 创建一个子控制器 
      * 信息字典  [clsName, title, imageName]
      */
-    private func controller( dict: [String : String] ) -> UIViewController {
+    private func controller( dict: [String : AnyObject] ) -> UIViewController {
 //        guard let 进行判断
-    guard let clsName = dict["clsName"],
-        title = dict["title"],
-        imageName = dict["imageName"],
+    guard let clsName = dict["clsName"] as? String,
+        title = dict["title"] as? String,
+        imageName = dict["imageName"] as? String,
         cls = NSClassFromString(Bundle.main().namespace + "." + clsName) as? UIViewController.Type  else{
         return UIViewController()
         }

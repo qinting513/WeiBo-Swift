@@ -26,6 +26,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     var isPullup = false
 //    用户登录标记
     var userLogon = false
+//    设置访客视图信息的字典
+    var visitorInfoDictionary : [String:String]?
     
 // MARK:-   隐藏系统的后，自定义导航栏
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main().bounds.size.width, height: 64))
@@ -86,12 +88,12 @@ extension WBBaseViewController {
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
     }
     
-//    MARK: - 设置未登录界面
+//    MARK: - 设置访客视图
     private func setupVisitView(){
        let visitorView = WBVisitorView(frame: view.bounds)
-       visitorView.backgroundColor = UIColor.white()
-//        view.addSubview(visitorView)
+        visitorView.backgroundColor = UIColor.white()
         view.insertSubview(visitorView, belowSubview: navigationBar)
+        visitorView.visitorInfo = visitorInfoDictionary
     }
     
 //    MARK: - 设置导航条
