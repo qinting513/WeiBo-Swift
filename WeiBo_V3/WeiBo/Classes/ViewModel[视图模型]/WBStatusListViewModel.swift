@@ -20,7 +20,7 @@ class WBStatusListViewModel {
 //                list 可能为空 用空数组 ?? []  --> 安全感
 //               1. yymodel 进行解析数据模型  字典转 模型
                 guard let array = NSArray.yy_modelArray(with: WBStatus.self, json: list ?? []) as? [WBStatus] else{
-               completion(isSuccess: isSuccess)
+                             completion(isSuccess: isSuccess)
                     return
                 }
                 // 2. 拼接数据

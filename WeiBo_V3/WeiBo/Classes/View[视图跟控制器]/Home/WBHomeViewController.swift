@@ -11,34 +11,18 @@ import UIKit
 private let cellID = "HomeCell"
 
 class WBHomeViewController: WBBaseViewController {
-//微博数据数组，懒加载
-    private lazy var statusList = [String]()
+
+//    ViewModel 实例
+  private  lazy  var listViewModel = WBStatusListViewModel()
     
     override func loadData() {
-
-        WBNetworkManager.shared.statusList { (list, isSuccess) in
-                      print(list)
-        }
         
-//        模拟 ‘延时’加载 dispatch_after
-       DispatchQueue.main.after(when: DispatchTime.now() + 2) {
-                for i in 0  ..< 15 {
-//                    在闭包中要加上self，指定语境
-                    if self.isPullup {
-//                    如果是上拉刷新 将数据追加到底部
-                        self.statusList.append("上拉刷新 --- \(i)")
-                    }else{
-//                    下拉刷新
-                        self.statusList.insert("\(i)", at: 0)
-                    }
-                }
-        //                    恢复上拉刷新标记
-        self.isPullup = false
-        self.tableView?.reloadData()
-        self.refreshControl?.endRefreshing()
-//               print( self.statusList)
-        }
-        
+        listViewModel.loadStatus { (isSuccess) in
+            //                    恢复上拉刷新标记
+            self.isPullup = false
+            self.tableView?.reloadData()
+            self.refreshControl?.endRefreshing()
+         }
     }
     
     override func viewDidLoad() {
@@ -67,12 +51,13 @@ extension WBHomeViewController {
 extension WBHomeViewController{
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         return statusList.count
+         return listViewModel.statusList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-           cell.textLabel?.text = statusList[indexPath.row]
+        print("list: \( listViewModel.statusList[indexPath.row].text )")
+        cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
             return cell
     }
 }

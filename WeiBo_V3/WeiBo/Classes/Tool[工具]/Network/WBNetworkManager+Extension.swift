@@ -35,7 +35,7 @@ extension WBNetworkManager {
 //        let params = ["access_token" : "2.00_26_KC0OvKcC26c31896fboBoooD"]
 //        request(method: .GET, urlString: urlString, parameters: params) { (json, isSuccess) in
 ////            as? 失败 则 result ＝ nil  否则有值
-//            let result = json?["status"] as? [ [String:AnyObject] ]
+//            let result = json?["statuses"] as? [ [String:AnyObject] ]
 //            completion(list: result, isSuccess: isSuccess)
 //        }
 //    }
@@ -43,8 +43,12 @@ extension WBNetworkManager {
     //    封装 方法4 : 将token封装起来
     func statusList (completion:(list : [ [String:AnyObject] ]?, isSuccess : Bool)-> ( ) ){
         let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
-        tokenRequest(method: .GET, urlString: urlString, parameters: nil) { (json, isSuccess) in
-            print(json)
+          tokenRequest(urlString: urlString, parameters: nil) { (json, isSuccess) in
+//            注意要回调
+            print("json====: \(json)")
+//            取出statuses 对应的数组，数组里的元素是字典类型的
+           let result = json?["statuses"] as? [ [String:AnyObject] ]
+            completion(list: result, isSuccess: isSuccess)
         }
     }
     
