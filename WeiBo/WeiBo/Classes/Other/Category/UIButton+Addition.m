@@ -11,6 +11,7 @@
 @implementation UIButton (Addition)
 
 + (instancetype)qt_textButton:(NSString *)title fontSize:(CGFloat)fontSize normalColor:(UIColor *)normalColor highlightedColor:(UIColor *)highlightedColor{
+    
     UIButton *btn = [self qt_textButton:title fontSize:fontSize normalColor:normalColor highlightedColor:highlightedColor backgroundImageName:nil backgroundHighlightImageName:nil];
     return btn;
 }

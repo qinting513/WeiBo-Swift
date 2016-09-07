@@ -16,5 +16,9 @@ extension UIColor {
             let blue = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
             return UIColor.init(red:red, green:green, blue:blue , alpha: 1)
     }
+    
+//    class func colorWithHex(hex:UInt16) -> UIColor{
+//    
+//    }
 
 }

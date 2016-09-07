@@ -89,7 +89,7 @@ extension WBBaseViewController {
 //    MARK: - 设置未登录界面
     private func setupVisitView(){
        let visitorView = WBVisitorView(frame: view.bounds)
-       visitorView.backgroundColor = UIColor.randomColor()
+       visitorView.backgroundColor = UIColor.white()
 //        view.addSubview(visitorView)
         view.insertSubview(visitorView, belowSubview: navigationBar)
     }
