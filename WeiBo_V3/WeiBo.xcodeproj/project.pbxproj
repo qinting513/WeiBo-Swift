@@ -15,6 +15,7 @@
 		B7724BB91D7FBDF6008B29F2 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7724BB81D7FBDF6008B29F2 /* UIButton+Extension.swift */; };
 		B7724BBB1D8026E6008B29F2 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = B7724BBA1D8026E6008B29F2 /* main.json */; };
 		B7724BEB1D8069B1008B29F2 /* WBNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7724BEA1D8069B1008B29F2 /* WBNetworkManager.swift */; };
+		B7A35ECC1D80750D0091E29B /* WBNetworkManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7A35ECB1D80750D0091E29B /* WBNetworkManager+Extension.swift */; };
 		B7DDA0C91D7DCA33005BE7FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */; };
 		B7DDA0D01D7DCA33005BE7FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */; };
 		B7DDA0D31D7DCA33005BE7FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0D11D7DCA33005BE7FD /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 		B7724BB81D7FBDF6008B29F2 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		B7724BBA1D8026E6008B29F2 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		B7724BEA1D8069B1008B29F2 /* WBNetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBNetworkManager.swift; sourceTree = "<group>"; };
+		B7A35ECB1D80750D0091E29B /* WBNetworkManager+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WBNetworkManager+Extension.swift"; sourceTree = "<group>"; };
 		B7DDA0C51D7DCA33005BE7FD /* WeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				B7724BEA1D8069B1008B29F2 /* WBNetworkManager.swift */,
+				B7A35ECB1D80750D0091E29B /* WBNetworkManager+Extension.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				B761D5FE1D7E602400C746A9 /* UIBarButtonItem+Extension.swift in Sources */,
 				B7DDA10D1D7DD5AF005BE7FD /* NSObject+Parse.m in Sources */,
 				B7DDA0C91D7DCA33005BE7FD /* AppDelegate.swift in Sources */,
+				B7A35ECC1D80750D0091E29B /* WBNetworkManager+Extension.swift in Sources */,
 				B7DDA0F31D7DD2A3005BE7FD /* WBMainTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
