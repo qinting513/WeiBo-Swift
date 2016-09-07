@@ -45,7 +45,7 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
 //MARK: -    重写title  的 setter方法
     override var title: String? {
         didSet{
-      naviItem.title = title
+              naviItem.title = title
         }
     }
     

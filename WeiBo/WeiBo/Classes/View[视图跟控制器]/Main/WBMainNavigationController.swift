@@ -37,7 +37,7 @@ class WBMainNavigationController: UINavigationController {
                   title = childViewControllers.first?.title ??  "返回"
             }
             backBtn.setTitle(title, for: UIControlState())
-            backBtn.setTitleColor(UIColor.black(), for: UIControlState())
+            backBtn.setTitleColor(UIColor.black(), for: UIControlState(rawValue:0))
             backBtn.setTitleColor(UIColor.orange(), for: .highlighted)
             backBtn.bounds = CGRect(x: 0, y: 0, width: 70, height: 30)
             backBtn.contentEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
