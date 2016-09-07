@@ -65,7 +65,7 @@ extension WBMainTabBarController {
     private func setupChildControllers() {
                 let array : [ [String:AnyObject] ] = [
                     ["clsName":"WBHomeViewController",    "title":"首页",   "imageName": "home",
-                     "visitorInfo" : ["imageName":"visitordiscover_feed_image_house", "message": "关注一些人，回这里看看有什么惊喜"]
+                     "visitorInfo" : ["imageName":"", "message": "关注一些人，回这里看看有什么惊喜"]
                     ],
                     ["clsName":"WBMessageViewController",  "title":"消息",    "imageName": "message_center",
                      "visitorInfo" : ["imageName":"visitordiscover_image_message", "message": "登录后，别人评论你的微博，发给你的消息，都会在这里收到通知"]

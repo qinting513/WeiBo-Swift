@@ -28,9 +28,12 @@ class WBVisitorView: UIView {
                    return
             }
             tipLabel.text = message
-            if imageName != "" {
-                    iconView.image = UIImage(named: imageName)
+            if imageName == "" {
+                return
             }
+            iconView.image = UIImage(named: imageName)
+            houseIconView.isHidden = true
+            maskIconView.isHidden = true
         }
     }
 
@@ -73,14 +76,14 @@ extension WBVisitorView {
     
     func setupUI() {
         
-//        self.backgroundColor  = UIColor.black()
+        self.backgroundColor  = UIColor.lightGray()
         addSubview(iconView)
         addSubview(maskIconView)
         addSubview(houseIconView)
         addSubview(tipLabel)
         addSubview(registerBtn)
         addSubview(loginBtn)
-        
+        tipLabel.textAlignment = .center
         //        autoresizing 跟autoLayout不能共存,xib默认是用autoLayout
         //        1，要先取消autoresizing
         for v in subviews {
