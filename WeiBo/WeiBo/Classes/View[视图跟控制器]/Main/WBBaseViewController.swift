@@ -24,6 +24,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     var refreshControl : UIRefreshControl?
 //    上拉刷新标记
     var isPullup = false
+//    用户登录标记
+    var userLogon = false
     
 // MARK:-   隐藏系统的后，自定义导航栏
     lazy var navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main().bounds.size.width, height: 64))
@@ -34,7 +36,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
           setupUI()
-//        loadData()
+//        如果我想每次都加载，那就放在viewWillAppear方法里
+        loadData()
     }
     
 //MARK: -    重写title  的 setter方法
@@ -46,7 +49,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     
 //    加载数据  具体的实现由子类负责
     func  loadData() {
-    
+//        如果不实现任何方法，则默认关闭
+     refreshControl?.endRefreshing()
     }
 
 }
@@ -57,7 +61,7 @@ extension WBBaseViewController {
      func setupUI() {
         view.backgroundColor = UIColor.randomColor()
         setupNavi()
-        setupTableView()
+        userLogon ?  setupTableView() : setupVisitView()
     }
     
 //    MARK: - 设置tableView
@@ -80,6 +84,14 @@ extension WBBaseViewController {
         tableView?.addSubview(refreshControl!)
 //        添加监听方法
         refreshControl?.addTarget(self, action: #selector(loadData), for: .valueChanged)
+    }
+    
+//    MARK: - 设置未登录界面
+    private func setupVisitView(){
+       let visitorView = WBVisitorView(frame: view.bounds)
+       visitorView.backgroundColor = UIColor.randomColor()
+//        view.addSubview(visitorView)
+        view.insertSubview(visitorView, belowSubview: navigationBar)
     }
     
 //    MARK: - 设置导航条
@@ -124,7 +136,7 @@ extension WBBaseViewController {
         let count = tableView.numberOfRows(inSection: section)
         //        判断最后一行,同时没有上拉刷新
         if row == (count - 1) && !isPullup {
-        print("上拉刷新")
+//        print("上拉刷新")
             self.isPullup = true
             self.loadData()
         }

@@ -24,6 +24,7 @@
 		B7DDA10D1D7DD5AF005BE7FD /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA10C1D7DD5AF005BE7FD /* NSObject+Parse.m */; };
 		B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */; };
 		B7DDA1131D7DD99C005BE7FD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */; };
+		B7ED71F11D7FB5900008723E /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED71F01D7FB5900008723E /* WBVisitorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B7DDA10E1D7DD68F005BE7FD /* UIButton+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Addition.h"; sourceTree = "<group>"; };
 		B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Addition.m"; sourceTree = "<group>"; };
 		B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		B7ED71F01D7FB5900008723E /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 		B7DDA0E01D7DD0D2005BE7FD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B7ED71EC1D7FB51E0008723E /* Visitor */,
 				B761D5FA1D7E5CEC00C746A9 /* test */,
 				B7DDA0F21D7DD2A3005BE7FD /* WBMainTabBarController.swift */,
 				B7DDA0F41D7DD2B9005BE7FD /* WBMainNavigationController.swift */,
@@ -218,6 +221,14 @@
 				B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B7ED71EC1D7FB51E0008723E /* Visitor */ = {
+			isa = PBXGroup;
+			children = (
+				B7ED71F01D7FB5900008723E /* WBVisitorView.swift */,
+			);
+			path = Visitor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,6 +306,7 @@
 			files = (
 				B7DDA0F91D7DD2D1005BE7FD /* WBDiscoverViewController.swift in Sources */,
 				B7DDA10A1D7DD590005BE7FD /* NSString+YX.m in Sources */,
+				B7ED71F11D7FB5900008723E /* WBVisitorView.swift in Sources */,
 				B7DDA0FF1D7DD2EF005BE7FD /* WBProfileViewController.swift in Sources */,
 				B7DDA0FD1D7DD2E7005BE7FD /* WBMessageViewController.swift in Sources */,
 				B7DDA0F71D7DD2C8005BE7FD /* WBBaseViewController.swift in Sources */,

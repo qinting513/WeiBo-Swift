@@ -22,7 +22,6 @@ class WBHomeViewController: WBBaseViewController {
                     if self.isPullup {
 //                    如果是上拉刷新 将数据追加到底部
                         self.statusList.append("上拉刷新 --- \(i)")
-
                     }else{
 //                    下拉刷新
                         self.statusList.insert("\(i)", at: 0)
@@ -32,14 +31,14 @@ class WBHomeViewController: WBBaseViewController {
         self.isPullup = false
         self.tableView?.reloadData()
         self.refreshControl?.endRefreshing()
-               print( self.statusList)
+//               print( self.statusList)
         }
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+//        loadData()
     }
 
     /**  private 使私有化，@objc 使运行时可以来调用此方法 */
