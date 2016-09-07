@@ -21,6 +21,21 @@ class WBVisitorView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    注册按钮
+     lazy var registerBtn : UIButton = UIButton(title: "注册",
+                                                       normalColor: UIColor.orange(),
+                                                       highlightedColor: UIColor.black(),
+                                                       backgroundImageName: "common_button_white_disable",
+                                                       target: nil,
+                                                       action: nil)!
+    //    登录按钮
+     lazy var loginBtn : UIButton = UIButton(title: "登录",
+                                                    normalColor: UIColor.orange(),
+                                                    highlightedColor: UIColor.black(),
+                                                    backgroundImageName: "common_button_white_disable",
+                                                    target: nil,
+                                                    action: nil)!
+    
     //MARK: - 设置访客视图信息  如果是首页，是空字符串
     var visitorInfo : [String:String]? {
         didSet{
@@ -60,29 +75,7 @@ class WBVisitorView: UIView {
     private lazy var houseIconView : UIImageView = UIImageView(image: UIImage(named: "visitordiscover_feed_image_house"))
     //    提示标签
     private lazy var tipLabel : UILabel = UILabel(withText: "关注一些人，回这里看看有什么惊喜，关注一些人，回这里看看有什么惊喜",
-                                                  fontSize: 14, color: UIColor.darkGray())!
-    //    注册按钮
-    private lazy var registerBtn : UIButton = UIButton(title: "注册",
-                                                       normalColor: UIColor.orange(),
-                                                       highlightedColor: UIColor.black(),
-                                                       backgroundImageName: "common_button_white_disable",
-                                                       target: self,
-                                                       action: #selector(registerBtnClick))!
-    //    登录按钮
-    private lazy var loginBtn : UIButton = UIButton(title: "登录",
-                                                    normalColor: UIColor.orange(),
-                                                    highlightedColor: UIColor.black(),
-                                                    backgroundImageName: "common_button_white_disable",
-                                                    target: self,
-                                                    action: #selector(registerBtnClick))!
-    func registerBtnClick(){
-        
-    }
-    
-    func loginBtnClick()  {
-        
-    }
-    
+                                                  fontSize: 14, color: UIColor.darkGray())!    
 }
 
 extension WBVisitorView {

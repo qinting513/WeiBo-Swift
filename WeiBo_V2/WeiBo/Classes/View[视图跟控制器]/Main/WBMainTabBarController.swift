@@ -63,9 +63,17 @@ extension WBMainTabBarController {
     
     //设置所有子控制器
     private func setupChildControllers() {
-        guard let path = Bundle.main().pathForResource("main.json", ofType: nil),
-        data = NSData(contentsOfFile: path),
-        array = try?  JSONSerialization.jsonObject(with: data as Data, options: [])  as?  [[String:AnyObject]]
+//        获取沙盒json
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let jsonPath = (docDir as NSString).appendingPathComponent("main.json")
+        var  data = NSData(contentsOfFile: jsonPath)
+        if data  == nil {
+//        如果沙盒里的为空 则从bundle里获取
+            let   path = Bundle.main().pathForResource("main.json", ofType: nil)
+            data = NSData(contentsOfFile: path!)
+        }
+        
+        guard let array = try?  JSONSerialization.jsonObject(with: data!  as Data, options: [])  as?  [[String:AnyObject]]
         else {
             return
         }

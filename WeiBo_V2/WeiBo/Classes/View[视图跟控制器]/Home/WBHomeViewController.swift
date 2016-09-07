@@ -48,9 +48,10 @@ class WBHomeViewController: WBBaseViewController {
 }
 
 extension WBHomeViewController {
-    override func setupUI() {
-        //        重写前要先重写父类的方法
-        super.setupUI()
+    override func setupTableView() {
+    //        重写前要先重写父类的方法
+        super.setupTableView()
+        
         naviItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendattention", highlightImageName: "navigationbar_friendattention_highlighted", target: self, action: #selector(WBHomeViewController.showFriends))
   
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: cellID)

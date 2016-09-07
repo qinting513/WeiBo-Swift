@@ -25,7 +25,7 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
 //    上拉刷新标记
     var isPullup = false
 //    用户登录标记
-    var userLogon = true
+    var userLogon = false
 //    设置访客视图信息的字典
     var visitorInfoDictionary : [String:String]?
     
@@ -57,17 +57,30 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
 
 }
 
+//MARK:- 登录注册
+extension WBBaseViewController{
+    
+ @objc  private  func registerBtnClick(){
+    print(#function)
+    }
+    
+ @objc private  func loginBtnClick()  {
+        print(#function)
+    }
+    
+}
+
 //设置界面
 extension WBBaseViewController {
 
-     func setupUI() {
+   private  func setupUI() {
         view.backgroundColor = UIColor.randomColor()
         setupNavi()
         userLogon ?  setupTableView() : setupVisitView()
     }
     
 //    MARK: - 设置tableView
-    private func setupTableView(){
+     func setupTableView(){
     tableView = UITableView(frame: view.bounds, style: .plain)
         view.insertSubview(tableView!, belowSubview: navigationBar)
         tableView?.dataSource = self
@@ -90,10 +103,18 @@ extension WBBaseViewController {
     
 //    MARK: - 设置访客视图
     private func setupVisitView(){
+
        let visitorView = WBVisitorView(frame: view.bounds)
         visitorView.backgroundColor = UIColor.white()
         view.insertSubview(visitorView, belowSubview: navigationBar)
+        //        1.设置导航视图信息
         visitorView.visitorInfo = visitorInfoDictionary
+        //2.添加监听方法
+        visitorView.loginBtn.addTarget(self, action: #selector(loginBtnClick), for: .touchUpInside)
+        visitorView.registerBtn.addTarget(self, action: #selector(registerBtnClick), for: .touchUpInside)
+        //3.设置导航条按钮
+        naviItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: .plain, target: self, action: #selector(registerBtnClick))
+        naviItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: .plain, target: self, action: #selector(loginBtnClick))
     }
     
 //    MARK: - 设置导航条

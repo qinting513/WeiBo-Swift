@@ -11,20 +11,19 @@ import UIKit
   //便利初始化器最终一定以调用一个指定初始化器结束
 extension UIButton{
     
-    convenience init?(title:String, fontSize:CGFloat = 16.0,normalColor:UIColor, highlightedColor:UIColor,  target:AnyObject?,  action:Selector ) {
+    convenience init?(title:String, fontSize:CGFloat = 16.0,normalColor:UIColor, highlightedColor:UIColor,  target:AnyObject?,  action:Selector? ) {
        self.init(title:title,  fontSize:fontSize, normalColor:normalColor,  highlightedColor:highlightedColor,  backgroundImageName:"",   target:target,   action:action )
     }
     
-    convenience init?(title:String, fontSize:CGFloat = 16.0,normalColor:UIColor, highlightedColor:UIColor, backgroundImageName:String, target:AnyObject?,  action:Selector ) {
+    convenience init?(title:String, fontSize:CGFloat = 16.0,normalColor:UIColor, highlightedColor:UIColor, backgroundImageName:String, target:AnyObject?,  action:Selector? ) {
              self.init()
-//        let button : UIButton = UIButton(type: .custom)
         self.setTitle(title, for: UIControlState())
         self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
         self.setTitleColor(normalColor, for: UIControlState(rawValue:0))
         self.setTitleColor(highlightedColor, for: .highlighted)
         self .setBackgroundImage(UIImage(named: backgroundImageName), for: UIControlState(rawValue: 0))
         self.sizeToFit()
-        self.addTarget(target, action: action, for: .touchUpInside)
+//        self.addTarget(target, action: action!, for: .touchUpInside)
     }
     
     convenience init(imageName:String, highlightImageName:String,target:AnyObject?,  action:Selector){
