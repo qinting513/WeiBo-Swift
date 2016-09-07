@@ -78,6 +78,11 @@ extension WBMainTabBarController {
                      "visitorInfo" : ["imageName":"visitordiscover_image_profile", "message": "登录后，你的相册、微博、个人资料都会显示在这里展示给别人"]
                     ],
                     ]
+        
+//        将数据输出为json格式
+//        let data = try!  JSONSerialization.data(withJSONObject: array, options: [.prettyPrinted])
+//        (data as NSData).write(toFile: "/Users/qinting/Desktop/main.json",atomically: true)
+        
         var vcs = [UIViewController]()
         for dict in array {
             vcs.append( controller(dict: dict) )

@@ -12,6 +12,7 @@
 		B761D6001D7E86D900C746A9 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */; };
 		B7724BB71D7FBAC8008B29F2 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7724BB61D7FBAC8008B29F2 /* UILabel+Extension.swift */; };
 		B7724BB91D7FBDF6008B29F2 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7724BB81D7FBDF6008B29F2 /* UIButton+Extension.swift */; };
+		B7724BBB1D8026E6008B29F2 /* main.json in Resources */ = {isa = PBXBuildFile; fileRef = B7724BBA1D8026E6008B29F2 /* main.json */; };
 		B7DDA0C91D7DCA33005BE7FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */; };
 		B7DDA0D01D7DCA33005BE7FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */; };
 		B7DDA0D31D7DCA33005BE7FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7DDA0D11D7DCA33005BE7FD /* LaunchScreen.storyboard */; };
@@ -35,6 +36,7 @@
 		B761D5FF1D7E86D900C746A9 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		B7724BB61D7FBAC8008B29F2 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		B7724BB81D7FBDF6008B29F2 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		B7724BBA1D8026E6008B29F2 /* main.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = main.json; sourceTree = "<group>"; };
 		B7DDA0C51D7DCA33005BE7FD /* WeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DDA0C81D7DCA33005BE7FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7DDA0CF1D7DCA33005BE7FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		B7DDA0E01D7DD0D2005BE7FD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B7724BBA1D8026E6008B29F2 /* main.json */,
 				B7ED71EC1D7FB51E0008723E /* Visitor */,
 				B761D5FA1D7E5CEC00C746A9 /* test */,
 				B7DDA0F21D7DD2A3005BE7FD /* WBMainTabBarController.swift */,
@@ -299,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7724BBB1D8026E6008B29F2 /* main.json in Resources */,
 				B7DDA0D31D7DCA33005BE7FD /* LaunchScreen.storyboard in Resources */,
 				B7DDA0D01D7DCA33005BE7FD /* Assets.xcassets in Resources */,
 			);

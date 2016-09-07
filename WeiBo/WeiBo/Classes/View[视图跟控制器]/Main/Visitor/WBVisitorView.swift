@@ -29,6 +29,7 @@ class WBVisitorView: UIView {
             }
             tipLabel.text = message
             if imageName == "" {
+                startAnimation()
                 return
             }
             iconView.image = UIImage(named: imageName)
@@ -37,6 +38,18 @@ class WBVisitorView: UIView {
         }
     }
 
+//    旋转动画
+    private func startAnimation(){
+        let anim = CABasicAnimation(keyPath: "transform.rotation")
+        anim.duration = 15
+        anim.toValue = 2*M_PI
+        anim.repeatCount = MAXFLOAT
+        //完成后不删除，如果iconView被释放，动画会一起销毁，要在添加到图层之前设置
+        anim.isRemovedOnCompletion = false
+       iconView.layer.add(anim, forKey: nil)
+
+
+    }
     
     //    懒加载属性只有调用UIKit控件的时候指定控件构造函数，其他都需要使用类型
     //    图像视图
