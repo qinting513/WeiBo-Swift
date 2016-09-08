@@ -32,7 +32,11 @@ class WBMainTabBarController: UITabBarController {
     
     //    MARK: 撰写按钮 事件
     @objc private func login(n : NSNotification){
-              print(n)
+//              print(n)
+        print("用户登录的通知")
+         let vc = UINavigationController.init(rootViewController:  WBOAuthViewController())
+        present(vc, animated: true, completion: nil)
+        
     }
     //    FIXME:没有实现
     /** private 保证方法私有，只能当前控制器可以访问，
@@ -54,7 +58,7 @@ class WBMainTabBarController: UITabBarController {
     deinit{
         timer?.invalidate()
 //        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
-NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default().removeObserver(self)
     }
     
 }

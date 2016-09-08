@@ -33,6 +33,7 @@
 		B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */; };
 		B7DDA1131D7DD99C005BE7FD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */; };
 		B7E863631D81B1E600A3F89E /* WBComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E863621D81B1E600A3F89E /* WBComment.swift */; };
+		B7E863661D81B4AC00A3F89E /* WBOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E863651D81B4AC00A3F89E /* WBOAuthViewController.swift */; };
 		B7ED71F11D7FB5900008723E /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED71F01D7FB5900008723E /* WBVisitorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Addition.m"; sourceTree = "<group>"; };
 		B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		B7E863621D81B1E600A3F89E /* WBComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComment.swift; sourceTree = "<group>"; };
+		B7E863651D81B4AC00A3F89E /* WBOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBOAuthViewController.swift; sourceTree = "<group>"; };
 		B7ED71F01D7FB5900008723E /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		F1ACCF26B29CE6E44884F947 /* Pods-WeiBo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiBo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiBo/Pods-WeiBo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				B7724BBA1D8026E6008B29F2 /* main.json */,
+				B7E863641D81B49000A3F89E /* OAuth */,
 				B7ED71EC1D7FB51E0008723E /* Visitor */,
 				B761D5FA1D7E5CEC00C746A9 /* test */,
 				B7DDA0F21D7DD2A3005BE7FD /* WBMainTabBarController.swift */,
@@ -268,6 +271,14 @@
 				B7724BB61D7FBAC8008B29F2 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B7E863641D81B49000A3F89E /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				B7E863651D81B4AC00A3F89E /* WBOAuthViewController.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		B7ED71EC1D7FB51E0008723E /* Visitor */ = {
@@ -428,6 +439,7 @@
 				B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */,
 				B761D5FC1D7E5D1000C746A9 /* WBTestViewController.swift in Sources */,
 				B7DDA1131D7DD99C005BE7FD /* Bundle+Extension.swift in Sources */,
+				B7E863661D81B4AC00A3F89E /* WBOAuthViewController.swift in Sources */,
 				B761D6001D7E86D900C746A9 /* UIColor+Extension.swift in Sources */,
 				B7DDA0F51D7DD2B9005BE7FD /* WBMainNavigationController.swift in Sources */,
 				B761D5FE1D7E602400C746A9 /* UIBarButtonItem+Extension.swift in Sources */,
