@@ -60,12 +60,14 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
 //MARK:- 登录注册
 extension WBBaseViewController{
     
+    
  @objc  private  func registerBtnClick(){
-    print(#function)
+    
     }
     
+    //通知登录
  @objc private  func loginBtnClick()  {
-        print(#function)
+    NotificationCenter.default().post(name: NSNotification.Name(rawValue:WBUserShouldLoginNotification) , object: nil)
     }
     
 }

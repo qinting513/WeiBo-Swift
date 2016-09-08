@@ -23,6 +23,7 @@ class WBMainTabBarController: UITabBarController {
         setupTimer()
         
         delegate = self
+        NotificationCenter.default().addObserver(self, selector: #selector(login), name: WBUserShouldLoginNotification, object: nil)
     }
     
     override func  supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -30,6 +31,9 @@ class WBMainTabBarController: UITabBarController {
     }
     
     //    MARK: 撰写按钮 事件
+    @objc private func login(n : NSNotification){
+              print(n)
+    }
     //    FIXME:没有实现
     /** private 保证方法私有，只能当前控制器可以访问，
      @objc 允许这个函数在运行时 通过OC的消息机制被调用
@@ -49,6 +53,8 @@ class WBMainTabBarController: UITabBarController {
     
     deinit{
         timer?.invalidate()
+//        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
+NotificationCenter.default().removeObserver(self)
     }
     
 }

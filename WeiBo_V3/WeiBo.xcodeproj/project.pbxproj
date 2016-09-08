@@ -32,6 +32,7 @@
 		B7DDA10D1D7DD5AF005BE7FD /* NSObject+Parse.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA10C1D7DD5AF005BE7FD /* NSObject+Parse.m */; };
 		B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */; };
 		B7DDA1131D7DD99C005BE7FD /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */; };
+		B7E863631D81B1E600A3F89E /* WBComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E863621D81B1E600A3F89E /* WBComment.swift */; };
 		B7ED71F11D7FB5900008723E /* WBVisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7ED71F01D7FB5900008723E /* WBVisitorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		B7DDA10E1D7DD68F005BE7FD /* UIButton+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Addition.h"; sourceTree = "<group>"; };
 		B7DDA10F1D7DD68F005BE7FD /* UIButton+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Addition.m"; sourceTree = "<group>"; };
 		B7DDA1121D7DD99C005BE7FD /* Bundle+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		B7E863621D81B1E600A3F89E /* WBComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBComment.swift; sourceTree = "<group>"; };
 		B7ED71F01D7FB5900008723E /* WBVisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBVisitorView.swift; sourceTree = "<group>"; };
 		F1ACCF26B29CE6E44884F947 /* Pods-WeiBo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeiBo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeiBo/Pods-WeiBo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				B7724BE61D80697B008B29F2 /* Network */,
+				B7E863621D81B1E600A3F89E /* WBComment.swift */,
 			);
 			path = "Tool[工具]";
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				B7724BB91D7FBDF6008B29F2 /* UIButton+Extension.swift in Sources */,
 				B7724BEB1D8069B1008B29F2 /* WBNetworkManager.swift in Sources */,
 				B7DDA0FD1D7DD2E7005BE7FD /* WBMessageViewController.swift in Sources */,
+				B7E863631D81B1E600A3F89E /* WBComment.swift in Sources */,
 				B7DDA0F71D7DD2C8005BE7FD /* WBBaseViewController.swift in Sources */,
 				B7DDA0FB1D7DD2DD005BE7FD /* WBHomeViewController.swift in Sources */,
 				B7DDA1101D7DD68F005BE7FD /* UIButton+Addition.m in Sources */,
