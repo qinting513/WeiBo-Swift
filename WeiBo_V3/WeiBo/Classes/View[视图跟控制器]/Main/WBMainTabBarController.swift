@@ -21,6 +21,8 @@ class WBMainTabBarController: UITabBarController {
         setupChildControllers()
         setupComposeButton()
         setupTimer()
+        
+        delegate = self
     }
     
     override func  supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -51,6 +53,33 @@ class WBMainTabBarController: UITabBarController {
     
 }
 
+//遵守协议的写法
+extension WBMainTabBarController : UITabBarControllerDelegate{
+
+  /** 即将选择TabBarItem */
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool{
+        let idx = (childViewControllers as NSArray).index(of: viewController)
+        //        判断当前索引是首页 同时idx也是首页，重复点击首页按钮
+        if selectedIndex == 0 && selectedIndex == idx {
+            //        让表格滚动到顶部
+            let nav = childViewControllers[0] as! WBMainNavigationController
+            let vc = nav.viewControllers[0] as! WBHomeViewController
+            vc.tableView?.setContentOffset(CGPoint(x: 0 , y:-64), animated: true)
+            //            加载数据
+            DispatchQueue.main.after(when: DispatchTime.now() + 1, execute: {
+                vc.loadData()
+            })
+        }
+        // 判断目标控制器是否上ViewController
+        return  !viewController.isMember(of: UIViewController.self)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController){
+    
+        
+    }
+}
+
 //通过分类 进行优化
 extension WBMainTabBarController {
     
@@ -61,7 +90,8 @@ extension WBMainTabBarController {
         //        计算按钮宽度
         let count = CGFloat(childViewControllers.count)
         //  MARK:  -将向内缩进的宽度减少，能够让按钮的宽度变大，盖住容错点，防止穿帮 ！
-        let w = tabBar.frame.size.width / count - 1
+//        let w = tabBar.frame.size.width / count - 1
+        let w = tabBar.frame.size.width / count
         //        CGRectInset 正数是向内缩进， 负数是向外扩展
         composeButton.frame = tabBar.bounds.insetBy(dx: 2*w, dy: 0)
         //        print("撰写按钮宽度\(composeButton.bounds.size.width)")
@@ -147,6 +177,9 @@ extension WBMainTabBarController {
 
 extension WBMainTabBarController {
     private func setupTimer(){
+        if  !WBNetworkManager.shared.userLogon {
+                return
+        }
         timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
     }

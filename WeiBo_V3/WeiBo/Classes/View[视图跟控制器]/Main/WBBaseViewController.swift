@@ -24,8 +24,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     var refreshControl : UIRefreshControl?
 //    上拉刷新标记
     var isPullup = false
-//    用户登录标记
-    var userLogon = true
+////    用户登录标记
+//    var userLogon = true
 //    设置访客视图信息的字典
     var visitorInfoDictionary : [String:String]?
     
@@ -38,8 +38,8 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
           setupUI()
-//        如果我想每次都加载，那就放在viewWillAppear方法里
-        loadData()
+//        如果我想每次都加载，那就放在viewWillAppear方法里,用户登录了才刷新数据
+        WBNetworkManager.shared.userLogon ? loadData() : ()
     }
     
 //MARK: -    重写title  的 setter方法
@@ -76,7 +76,7 @@ extension WBBaseViewController {
    private  func setupUI() {
         view.backgroundColor = UIColor.randomColor()
         setupNavi()
-        userLogon ?  setupTableView() : setupVisitView()
+        WBNetworkManager.shared.userLogon ?  setupTableView() : setupVisitView()
     }
     
 //    MARK: - 设置tableView
