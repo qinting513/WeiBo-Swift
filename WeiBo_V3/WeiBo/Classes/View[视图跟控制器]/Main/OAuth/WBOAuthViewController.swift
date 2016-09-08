@@ -15,6 +15,7 @@ class WBOAuthViewController: UIViewController {
     
     override func loadView() {
         view = webView
+        webView.delegate = self
         view.backgroundColor = UIColor.white()
         
         title = "登录新浪微博"
@@ -23,21 +24,22 @@ class WBOAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+   let urlStr = "https://api.weibo.com/oauth2/authorize?redirect_uri=\(redirectURI)&client_id=\(AppKey)"
+        guard let url = URL.init(string: urlStr)  else {
+             return
+        }
+        webView.loadRequest(URLRequest.init(url: url))
     }
 
     @objc private func close(){
                 dismiss(animated: true, completion: nil)
     }
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension WBOAuthViewController : UIWebViewDelegate {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
     }
-    */
 
 }
