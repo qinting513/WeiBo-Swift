@@ -17,11 +17,13 @@ class WBHomeViewController: WBBaseViewController {
     
     override func loadData() {
         
-        listViewModel.loadStatus { (isSuccess) in
+        listViewModel.loadStatus(pullup : self.isPullup) { (isSuccess,shouldRefresh) in
             //                    恢复上拉刷新标记
             self.isPullup = false
-            self.tableView?.reloadData()
             self.refreshControl?.endRefreshing()
+            if shouldRefresh {
+                     self.tableView?.reloadData()
+            }
          }
     }
     
@@ -56,7 +58,7 @@ extension WBHomeViewController{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        print("list: \( listViewModel.statusList[indexPath.row].text )")
+//        print("list: \( listViewModel.statusList[indexPath.row].text )")
         cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
             return cell
     }

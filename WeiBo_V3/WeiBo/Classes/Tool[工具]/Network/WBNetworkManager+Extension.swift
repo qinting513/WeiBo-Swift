@@ -41,9 +41,10 @@ extension WBNetworkManager {
 //    }
     
     //    封装 方法4 : 将token封装起来
-    func statusList (completion:(list : [ [String:AnyObject] ]?, isSuccess : Bool)-> ( ) ){
+    func statusList  (since_id:Int64 = 0 , max_id:Int64 = 0,  completion:(list : [ [String:AnyObject] ]?, isSuccess : Bool)-> ( ) ){
         let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
-          tokenRequest(urlString: urlString, parameters: nil) { (json, isSuccess) in
+        let params = ["since_id":"\(since_id)", "max_id":"\(max_id > 0 ? max_id - 1 : 0 )"]
+          tokenRequest(urlString: urlString, parameters: params) { (json, isSuccess) in
 //            注意要回调
             print("json====: \(json)")
 //            取出statuses 对应的数组，数组里的元素是字典类型的

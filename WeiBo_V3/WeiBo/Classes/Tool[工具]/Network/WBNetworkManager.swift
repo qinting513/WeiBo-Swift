@@ -20,7 +20,8 @@ class WBNetworkManager: AFHTTPSessionManager {
     static let shared = WBNetworkManager()
 
     //访问令牌，所有的网络请求都基于此令牌（登录除外）
-    var accessToken  : String? = "2.00_26_KC0OvKcC26c31896fboBoooD"
+    var accessToken  : String? = "2.00_26_KCMXbl5E7d1ad885e6jc2agB"
+//    var accessToken  : String? = "2.00_26_KC0OvKcC26c31896fboBoooD"
     
     ///专门负责拼接token 的网络请求方法
     func tokenRequest( method:WBHTTPMethod = .GET, urlString:String,  parameters : [String:AnyObject]?,
