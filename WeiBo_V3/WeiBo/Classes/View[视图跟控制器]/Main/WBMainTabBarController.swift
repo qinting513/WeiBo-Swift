@@ -13,15 +13,14 @@ import UIKit
 
 class WBMainTabBarController: UITabBarController {
     
+    //定时器 检查新微博
+    private var timer : Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupChildControllers()
         setupComposeButton()
-        
-//        测试未读消息数量
-        WBNetworkManager.shared.unreadCount { (count) in
-            print("未读消息数量\(count)")
-        }
+        setupTimer()
     }
     
     override func  supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
@@ -45,6 +44,10 @@ class WBMainTabBarController: UITabBarController {
     
     //    私有控件
     private lazy var composeButton : UIButton = UIButton.qt_imageButton("tabbar_compose_icon_add", highlightedImageName: "tabbar_compose_button")
+    
+    deinit{
+        timer?.invalidate()
+    }
     
 }
 
@@ -140,4 +143,21 @@ extension WBMainTabBarController {
         let nav = WBMainNavigationController(rootViewController: vc)
         return nav
     }
+}
+
+extension WBMainTabBarController {
+    private func setupTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        
+    }
+//    设置首页
+    func updateTimer(){
+       WBNetworkManager.shared.unreadCount { (count) in
+//        用中括号直接强制解包了，用first还是可选项
+           self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil
+//        从iOS8之后要申请用户授权之后才可以显示
+           UIApplication.shared().applicationIconBadgeNumber = count
+        }
+    }
+
 }
