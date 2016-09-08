@@ -23,6 +23,9 @@ class WBNetworkManager: AFHTTPSessionManager {
     var accessToken  : String? = "2.00_26_KCMXbl5E7d1ad885e6jc2agB"
 //    var accessToken  : String? = "2.00_26_KC0OvKcC26c31896fboBoooD"
     
+//    用户微博 id 
+    var uid : String? = "5365823342"
+    
     ///专门负责拼接token 的网络请求方法
     func tokenRequest( method:WBHTTPMethod = .GET, urlString:String,  parameters : [String:AnyObject]?,
                        completion :  (json:AnyObject?, isSuccess : Bool) ->()  ){

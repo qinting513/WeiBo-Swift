@@ -17,6 +17,11 @@ class WBMainTabBarController: UITabBarController {
         super.viewDidLoad()
         setupChildControllers()
         setupComposeButton()
+        
+//        测试未读消息数量
+        WBNetworkManager.shared.unreadCount { (count) in
+            print("未读消息数量\(count)")
+        }
     }
     
     override func  supportedInterfaceOrientations() -> UIInterfaceOrientationMask {

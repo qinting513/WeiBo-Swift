@@ -53,4 +53,21 @@ extension WBNetworkManager {
         }
     }
     
+    //返回微博的未读数量
+    func unreadCount(completion:(count : Int) -> () ) {
+        guard let uid = uid  else {
+            return
+        }
+        let urlString  = "https://rm.api.weibo.com/2/remind/unread_count.json"
+        let params = ["uid" : uid]
+        tokenRequest(urlString: urlString, parameters: params) { (json, isSuccess) in
+            print("未读json:\(json) ")
+            let dict = json as? [String : AnyObject]
+            let count = dict?["status"]  as? Int
+            // ?? 2个问号表示如果有值则用值，如果没有则是0
+          completion(count: count ?? 0 )
+        }
+        
+    }
+    
 }
