@@ -93,6 +93,7 @@ extension WBOAuthViewController : UIWebViewDelegate {
             }
             //登录成功，通过通知跳转界面,关闭窗口
             NotificationCenter.default().post(name: NSNotification.Name(rawValue: WBUserLoginSuccessNotification), object: nil)
+            self.close()
         }
      
         return true

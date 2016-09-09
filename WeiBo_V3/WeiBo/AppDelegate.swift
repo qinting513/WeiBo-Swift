@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import SVProgressHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,18 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        // #available 检测版本是 10.0 以上的
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().requestAuthorization([.alert, .badge, .carPlay, .sound]) { (success, error) in
-                print("授权" + (success ? "成功" : "失败"))
-            }
-        } else {
-            //        取得用户授权显示通知（上方的提示音／声音／badgeNumber）
-            let notifySetting = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
-            application.registerUserNotificationSettings(notifySetting)
-        }
-        
-        
+        setupAdditions()
+       
         window = UIWindow()
         window?.backgroundColor = UIColor.white()
         
@@ -40,6 +31,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+
+}
+
+extension AppDelegate {
+    private func setupAdditions(){
+        //1.设置最小时间
+                SVProgressHUD.setMinimumDismissTimeInterval(1.0)
+                //2.设置用户授权显示通知
+                // #available 检测版本是 10.0 以上的
+                if #available(iOS 10.0, *) {
+                    UNUserNotificationCenter.current().requestAuthorization([.alert, .badge, .carPlay, .sound]) { (success, error) in
+                        print("授权" + (success ? "成功" : "失败"))
+                    }
+                } else {
+                    //        取得用户授权显示通知（上方的提示音／声音／badgeNumber）
+                    let notifySetting = UIUserNotificationSettings(types: [.alert, .badge], categories: nil)
+                    UIApplication.shared().registerUserNotificationSettings(notifySetting)
+                }
+        }
 
 }
 
