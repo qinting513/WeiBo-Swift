@@ -85,6 +85,9 @@ extension WBNetworkManager {
         
         tokenRequest(method: .POST, urlString: urlStr, parameters: params) { (json, isSuccess) in
             print("accessToken :\(json)")
+            // [:] 空字典
+            self.userAccount.yy_modelSet(with: json as? [String:AnyObject]  ?? [:] )
+            self.userAccount.saveAccount()
         }
     }
 }
