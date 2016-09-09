@@ -8,6 +8,8 @@
 
 import UIKit
 
+let   filePath = NSHomeDirectory().appending("/Documents/userAccount.json")
+
 class WBUserAccount: NSObject {
 
     ///访问令牌
@@ -21,10 +23,37 @@ class WBUserAccount: NSObject {
             expiresDate = Date(timeIntervalSinceNow: expires_in)
         }
     }
+
     //处理过期日期
     var expiresDate : Date?
     override var description: String {
           return yy_modelDescription()
+    }
+    
+    override init(){
+         super.init()
+        
+        guard let data = NSData(contentsOfFile: filePath),
+        dict = try? JSONSerialization.jsonObject(with: data as Data, options: [])  as?  [String:AnyObject]  else {
+               return
+        }
+      // 2. 使用字典设置属性
+        yy_modelSet(with: dict ?? [:])
+        print("从沙盒获取的用户信息： \(dict)  ======== \(self)")
+        
+        /** 测试过期
+         expiresDate = Date(timeIntervalSinceNow: -3600 * 24)
+         */
+        
+        // 3.处理账户过期  expiresDate 比当前的日期早，就过期了，比如expiresDate是7月1日，现在7月5日了，说明已过期
+        if expiresDate?.compare(Date() ) != .orderedDescending {
+        print("账号已过期")
+            access_token = nil
+            uid = nil;
+          _  =  try?  FileManager.default().removeItem(atPath: filePath)
+            return
+        }
+         print("账号正常\(self)")
     }
     
     /** 1.钥匙串访问 (SSkeychain)   2.偏好设置(Xcode 8.0 beta 无效) 3.数据库  4.归档  */
@@ -35,7 +64,6 @@ class WBUserAccount: NSObject {
         
         //2.删除expires_in 的值
         dict.removeValue(forKey: "expires_in")
-        let   filePath = NSHomeDirectory().appending("/Documents/userAccount.json")
         //3.字典序列化
         guard let data = try?  JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)  else{
                     return

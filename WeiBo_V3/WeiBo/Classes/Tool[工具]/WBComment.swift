@@ -10,8 +10,9 @@ import Foundation
 
 //MARK: - 全局通知定义
 
- let WBAppKey = "4030509094"
-let WBAppSecret = "cbf23cc6e8f4e04fd37a5682eb38b93e"
+ let WBAppKey = "488067356"
+let WBAppSecret = "a4bac991018cacb139aa9f1dbc0ebd6d"
 let WBRedirectURI = "http://www.baidu.com"
 
 let WBUserShouldLoginNotification =  "WBUserShouldLoginNotification"
+let  WBUserLoginSuccessNotification = "WBUserLoginSuccessNotification"

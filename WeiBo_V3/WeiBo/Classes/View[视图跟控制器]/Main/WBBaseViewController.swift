@@ -40,6 +40,13 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
           setupUI()
 //        如果我想每次都加载，那就放在viewWillAppear方法里,用户登录了才刷新数据
         WBNetworkManager.shared.userLogon ? loadData() : ()
+        
+        //新浪登录成功的通知
+        NotificationCenter.default().addObserver(
+            self,
+            selector: #selector(loginSuccess),
+            name: WBUserLoginSuccessNotification,
+            object: nil)
     }
     
 //MARK: -    重写title  的 setter方法
@@ -53,6 +60,9 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
     func  loadData() {
 //        如果不实现任何方法，则默认关闭
      refreshControl?.endRefreshing()
+    }
+    deinit {
+        NotificationCenter.default().removeObserver(self)
     }
 
 }
@@ -68,6 +78,15 @@ extension WBBaseViewController{
     //通知登录
  @objc private  func loginBtnClick()  {
     NotificationCenter.default().post(name: NSNotification.Name(rawValue:WBUserShouldLoginNotification) , object: nil)
+    }
+    @objc private func loginSuccess(n : Notification){
+            print("登录成功: \(n)")
+            //更新UI  -- >将访客视图替换为表格视图
+        //需要重新设置View
+        //在访问view的getter时，如果view == nil 会去调用loadView方法 -> viewDidLoad方法
+        view = nil
+        //关键代码：注销通知，重新执行viewDidLoad 会再次注册通知！避免通知重复注册
+        NotificationCenter.default().removeObserver(self)
     }
     
 }

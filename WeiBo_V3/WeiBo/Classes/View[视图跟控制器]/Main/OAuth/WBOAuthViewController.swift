@@ -54,23 +54,47 @@ extension WBOAuthViewController : UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         //确认思路
         //1.如果请求地址包含 http://baidu.com 不加载页面 ／ 否则加载页面
-        //        print("加载请求---\(request.url?.absoluteString)")
+                print("加载请求---\(request.url?.absoluteString)")
 
         if request.url?.absoluteString?.hasPrefix(WBRedirectURI) == false {
                 return true
         }
         //2. 如果回调地址的 '查询' 字符串中查找 'code='  query 就是URL中 ‘？’后面的所有部分
         if request.url?.query?.hasPrefix("code=" )  == false{
-        print("取消授权")
+            print("取消授权")
             close()
             return false
         }
+  
            //3.如果有 则授权成功，如果没有授权失败
         //来到此处 url中肯定包含 ‘ code ＝’
-        let code = request.url?.absoluteString?.substring(from:"code".endIndex)  ?? ""
+        let str = (request.url?.absoluteString)! as NSString
+        var code : String?
+        if str.length > 0 {
+                let ra = str.range(of: "code=")
+             code  = str.substring(from: (ra.location + ra.length) ?? 0 )
+           
+        }
+//        let code = request.url?.absoluteString?.substring(from:"code=".endIndex)  ?? ""
+  
      //4.用授权码获取accessToken
-        WBNetworkManager.shared.loadAccessToken(code: code)
-       
+             print("授权码:\(code)")
+        guard code != "" else {
+            print("授权码为空:\(code)")
+            close()
+            return  false
+        }
+        WBNetworkManager.shared.loadAccessToken(code: code!) { (isSuccess) in
+            
+            if !isSuccess {
+                   SVProgressHUD.showInfo(withStatus: "网络请求失败")
+            }else{
+                      SVProgressHUD.showInfo(withStatus: "登录成功")
+            }
+            //登录成功，通过通知跳转界面,关闭窗口
+            NotificationCenter.default().post(name: NSNotification.Name(rawValue: WBUserLoginSuccessNotification), object: nil)
+        }
+     
         return true
     }
 

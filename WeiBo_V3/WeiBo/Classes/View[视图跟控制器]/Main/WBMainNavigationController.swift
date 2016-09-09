@@ -9,9 +9,7 @@
 import UIKit
 
 class WBMainNavigationController: UINavigationController {
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 //       关键点：把系统导航栏隐藏

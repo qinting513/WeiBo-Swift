@@ -74,7 +74,8 @@ extension WBNetworkManager {
 //MARK: - OAuth相关的方法
 extension WBNetworkManager {
     //获取accessToken的方法
-    func loadAccessToken(code:String) {
+//    提问 网络请求 异步应该返回什么   --- > 需要什么就返回什么
+    func loadAccessToken(code:String, completion : (isSuccess:Bool) -> ()) {
         let urlStr = "https://api.weibo.com/oauth2/access_token"
         let params = ["client_id":WBAppKey,
                              "client_secret":WBAppSecret,
@@ -82,12 +83,13 @@ extension WBNetworkManager {
                               "code":code,
                               "redirect_uri":WBRedirectURI
                                     ]
-        
-        tokenRequest(method: .POST, urlString: urlStr, parameters: params) { (json, isSuccess) in
+        request(method: .POST, urlString: urlStr, parameters: params) { (json, isSuccess) in
             print("accessToken :\(json)")
             // [:] 空字典
             self.userAccount.yy_modelSet(with: json as? [String:AnyObject]  ?? [:] )
             self.userAccount.saveAccount()
+            completion(isSuccess: isSuccess)
         }
+
     }
 }
