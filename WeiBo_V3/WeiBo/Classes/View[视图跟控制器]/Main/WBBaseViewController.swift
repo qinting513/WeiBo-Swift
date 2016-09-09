@@ -81,6 +81,8 @@ extension WBBaseViewController{
     }
     @objc private func loginSuccess(n : Notification){
             print("登录成功: \(n)")
+        naviItem.leftBarButtonItem = nil
+        naviItem.rightBarButtonItem = nil
             //更新UI  -- >将访客视图替换为表格视图
         //需要重新设置View
         //在访问view的getter时，如果view == nil 会去调用loadView方法 -> viewDidLoad方法
@@ -114,6 +116,8 @@ extension WBBaseViewController {
                                                left: 0,
                                                bottom: tabBarController?.tabBar.bounds.height ??  49 ,
                                                 right: 0)
+        //修改指示器的缩进
+        tableView?.scrollIndicatorInsets = (tableView?.contentInset)!
         
 //        设置刷新控件
         refreshControl = UIRefreshControl()
