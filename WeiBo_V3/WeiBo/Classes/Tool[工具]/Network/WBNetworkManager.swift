@@ -17,25 +17,25 @@ enum WBHTTPMethod {
 class WBNetworkManager: AFHTTPSessionManager {
 
     /// 静态区/常量区/闭包  在第一次访问时执行执行闭包，并且将结果保存在shared常量中
-    static let shared = WBNetworkManager()
+    static let shared : WBNetworkManager = {
+       let instance = WBNetworkManager()
+        // 设置相应序列化支持的数据类型
+        instance.responseSerializer.acceptableContentTypes?.insert("text/plain")
+        return instance
+    }()
 
-    //访问令牌，所有的网络请求都基于此令牌（登录除外）
-    var accessToken  : String?   // = "2.00_26_KCMXbl5E7d1ad885e6jc2agB"
-//    var accessToken  : String? = "2.00_26_KC0OvKcC26c31896fboBoooD"
-    
-//    用户微博 id 
-    var uid : String? = "5365823342"
+        lazy var userAccount = WBUserAccount()
     
 //    用户登录标记
     var userLogon : Bool {
-            return accessToken != nil
+            return userAccount.access_token != nil
     }
     
     ///专门负责拼接token 的网络请求方法
     func tokenRequest( method:WBHTTPMethod = .GET, urlString:String,  parameters : [String:AnyObject]?,
                        completion :  (json:AnyObject?, isSuccess : Bool) ->()  ){
 //    0.判断token是否为nil  为ni 直接返回
-       guard let token = accessToken else{
+       guard let token = userAccount.access_token else{
                 //FIXME: 发送通知 谁接收 谁处理，提醒用户登录
             print("没有token 需要登录")
             completion(json: nil, isSuccess: false)

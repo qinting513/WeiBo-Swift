@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 //通过webView登录
 class WBOAuthViewController: UIViewController {
 
@@ -16,6 +16,7 @@ class WBOAuthViewController: UIViewController {
     override func loadView() {
         view = webView
         webView.delegate = self
+        webView.scrollView.isScrollEnabled = false
         view.backgroundColor = UIColor.white()
         
         title = "登录新浪微博"
@@ -25,7 +26,7 @@ class WBOAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   let urlStr = "https://api.weibo.com/oauth2/authorize?redirect_uri=\(redirectURI)&client_id=\(AppKey)"
+   let urlStr = "https://api.weibo.com/oauth2/authorize?redirect_uri=\(WBRedirectURI)&client_id=\(WBAppKey)"
         guard let url = URL.init(string: urlStr)  else {
              return
         }
@@ -33,6 +34,7 @@ class WBOAuthViewController: UIViewController {
     }
 
     @objc private func close(){
+                SVProgressHUD.dismiss()
                 dismiss(animated: true, completion: nil)
     }
     
@@ -47,8 +49,39 @@ class WBOAuthViewController: UIViewController {
 }
 
 extension WBOAuthViewController : UIWebViewDelegate {
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        
+    
+    /// 是否加载request
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        //确认思路
+        //1.如果请求地址包含 http://baidu.com 不加载页面 ／ 否则加载页面
+        //        print("加载请求---\(request.url?.absoluteString)")
+
+        if request.url?.absoluteString?.hasPrefix(WBRedirectURI) == false {
+                return true
+        }
+        //2. 如果回调地址的 '查询' 字符串中查找 'code='  query 就是URL中 ‘？’后面的所有部分
+        if request.url?.query?.hasPrefix("code=" )  == false{
+        print("取消授权")
+            close()
+            return false
+        }
+           //3.如果有 则授权成功，如果没有授权失败
+        //来到此处 url中肯定包含 ‘ code ＝’
+        let code = request.url?.absoluteString?.substring(from:"code".endIndex)  ?? ""
+     //4.用授权码获取accessToken
+        WBNetworkManager.shared.loadAccessToken(code: code)
+       
+        return true
     }
 
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        SVProgressHUD.show()
+    }
+
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        SVProgressHUD.dismiss()
+    }
+    func webView(_ webView: UIWebView, didFailLoadWithError error: NSError?) {
+        SVProgressHUD.dismiss()
+    }
 }
