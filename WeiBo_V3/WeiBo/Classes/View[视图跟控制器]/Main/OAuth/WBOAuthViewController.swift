@@ -26,11 +26,12 @@ class WBOAuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-   let urlStr = "https://api.weibo.com/oauth2/authorize?redirect_uri=\(WBRedirectURI)&client_id=\(WBAppKey)"
+        let urlStr = "https://api.weibo.com/oauth2/authorize?redirect_uri=\(WBRedirectURI)&client_id=\(WBAppKey)"
         guard let url = URL.init(string: urlStr)  else {
              return
         }
         webView.loadRequest(URLRequest.init(url: url))
+       
     }
 
     @objc private func close(){
@@ -55,7 +56,6 @@ extension WBOAuthViewController : UIWebViewDelegate {
         //确认思路
         //1.如果请求地址包含 http://baidu.com 不加载页面 ／ 否则加载页面
                 print("加载请求---\(request.url?.absoluteString)")
-
         if request.url?.absoluteString?.hasPrefix(WBRedirectURI) == false {
                 return true
         }
@@ -84,19 +84,21 @@ extension WBOAuthViewController : UIWebViewDelegate {
             close()
             return  false
         }
+        
+        //能够到这一步 说明code是非空的字符串
         WBNetworkManager.shared.loadAccessToken(code: code!) { (isSuccess) in
             
             if !isSuccess {
                    SVProgressHUD.showInfo(withStatus: "网络请求失败")
+                
             }else{
-                      SVProgressHUD.showInfo(withStatus: "登录成功")
-            }
             //登录成功，通过通知跳转界面,关闭窗口
             NotificationCenter.default().post(name: NSNotification.Name(rawValue: WBUserLoginSuccessNotification), object: nil)
             self.close()
+            return
+            }
         }
-     
-        return true
+        return false
     }
 
     func webViewDidStartLoad(_ webView: UIWebView) {

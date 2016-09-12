@@ -8,18 +8,23 @@
 
 /**  note：
  容错点： */
-
+import SVProgressHUD
 import UIKit
 
 class WBMainTabBarController: UITabBarController {
     
     //定时器 检查新微博
     private var timer : Timer?
+    //    私有控件
+    private lazy var composeButton : UIButton = UIButton.qt_imageButton("tabbar_compose_icon_add", highlightedImageName: "tabbar_compose_button")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        设置子控制器
         setupChildControllers()
+//        中间的加号按钮
         setupComposeButton()
+//        设置定时器，监听未读消息
         setupTimer()
         
         delegate = self
@@ -32,16 +37,29 @@ class WBMainTabBarController: UITabBarController {
     
     //    MARK: 撰写按钮 事件
     @objc private func login(n : NSNotification){
-//              print(n)
-        print("用户登录的通知")
-         let vc = UINavigationController.init(rootViewController:  WBOAuthViewController())
-        present(vc, animated: true, completion: nil)
+        print("用户登录的通知:\(n)")
+        WBNetworkManager.shared.userLoging = false
+        var when = DispatchTime.now()
+        //n.object 如果是token 过期的话 object传一个 bad token
+        if n.object != nil {
+            //设置遮罩样式
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            SVProgressHUD.showInfo(withStatus: "用户登录已经超时，请重新登录")
+            when = DispatchTime.now() + 2
+        }
+        DispatchQueue.main.after(when: when ) {
+            SVProgressHUD.setDefaultMaskType(.clear)
+            let vc = UINavigationController.init(rootViewController:  WBOAuthViewController())
+            self.present(vc, animated: true, completion: nil)
+        }
+
         
     }
-    //    FIXME:没有实现
+
     /** private 保证方法私有，只能当前控制器可以访问，
      @objc 允许这个函数在运行时 通过OC的消息机制被调用
      */
+        //    FIXME:没有实现
     @objc  private func composeButtonStatus( ) {
         print("撰写weibo")
         
@@ -52,12 +70,8 @@ class WBMainTabBarController: UITabBarController {
         present(nav, animated: true, completion: nil)
     }
     
-    //    私有控件
-    private lazy var composeButton : UIButton = UIButton.qt_imageButton("tabbar_compose_icon_add", highlightedImageName: "tabbar_compose_button")
-    
     deinit{
         timer?.invalidate()
-//        NotificationCenter.default().removeObserver(self, name: NSNotification.Name(rawValue: WBUserShouldLoginNotification), object: nil)
         NotificationCenter.default().removeObserver(self)
     }
     
@@ -68,6 +82,8 @@ extension WBMainTabBarController : UITabBarControllerDelegate{
 
   /** 即将选择TabBarItem */
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool{
+        
+//        取出viewController在子控制器数组中的位置
         let idx = (childViewControllers as NSArray).index(of: viewController)
         //        判断当前索引是首页 同时idx也是首页，重复点击首页按钮
         if selectedIndex == 0 && selectedIndex == idx {
@@ -75,9 +91,9 @@ extension WBMainTabBarController : UITabBarControllerDelegate{
             let nav = childViewControllers[0] as! WBMainNavigationController
             let vc = nav.viewControllers[0] as! WBHomeViewController
             vc.tableView?.setContentOffset(CGPoint(x: 0 , y:-64), animated: true)
-            //            加载数据
+            //            加载数据 bug：得让tableView滚动到顶部之后 才加载数据，所以需延时1秒
             DispatchQueue.main.after(when: DispatchTime.now() + 1, execute: {
-                vc.loadData()
+                  vc.loadData()
             })
         }
         // 判断目标控制器是否上ViewController
@@ -185,16 +201,21 @@ extension WBMainTabBarController {
     }
 }
 
+//定时器 检查未读消息
 extension WBMainTabBarController {
+    
     private func setupTimer(){
+//        没有登陆 就不创建定时器了
         if  !WBNetworkManager.shared.userLogon {
                 return
         }
-        timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        
+           timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
 //    设置首页
     func updateTimer(){
+//        if    !WBNetworkManager.shared.userLoging {
+//                return
+//        }
        WBNetworkManager.shared.unreadCount { (count) in
 //        用中括号直接强制解包了，用first还是可选项
            self.tabBar.items?[0].badgeValue = count > 0 ? "\(count)" : nil

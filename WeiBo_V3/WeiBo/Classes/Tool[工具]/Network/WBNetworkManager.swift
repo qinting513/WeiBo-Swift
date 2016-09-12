@@ -15,7 +15,8 @@ enum WBHTTPMethod {
 }
 
 class WBNetworkManager: AFHTTPSessionManager {
-
+  //用户登陆状态，登录了 则为true
+    var userLoging : Bool = false
     /// 静态区/常量区/闭包  在第一次访问时执行执行闭包，并且将结果保存在shared常量中
     static let shared : WBNetworkManager = {
        let instance = WBNetworkManager()
@@ -30,14 +31,17 @@ class WBNetworkManager: AFHTTPSessionManager {
     var userLogon : Bool {
             return userAccount.access_token != nil
     }
+
     
     ///专门负责拼接token 的网络请求方法
     func tokenRequest( method:WBHTTPMethod = .GET, urlString:String,  parameters : [String:AnyObject]?,
                        completion :  (json:AnyObject?, isSuccess : Bool) ->()  ){
 //    0.判断token是否为nil  为ni 直接返回
-       guard let token = userAccount.access_token else{
-                //FIXME: 发送通知 谁接收 谁处理，提醒用户登录
+       guard let token = userAccount.access_token  else{
+                //发送通知 谁接收 谁处理，提醒用户登录
             print("没有token 需要登录")
+        NotificationCenter.default().post(name: NSNotification.Name(WBUserShouldLoginNotification),
+                                          object: nil)
             completion(json: nil, isSuccess: false)
             return
         }
@@ -62,14 +66,19 @@ class WBNetworkManager: AFHTTPSessionManager {
         
 //        失败回调
         let failure = { (task:URLSessionDataTask?, error:NSError) -> () in
+            print("用户响应信息:   \(task?.response)")
             //处理 用户token 过期
             if (task?.response as? HTTPURLResponse)?.statusCode == 403 {
-            print("用户token 过期")
-                //FIXME: 发送通知 谁接收 谁处理，提醒用户登录
+            print("用户token 过期：\(error)")
+                //token过期   发送通知 谁接收 谁处理，提醒用户登录
+//                NotificationCenter.default().post(
+//                                    name: NSNotification.Name(WBUserShouldLoginNotification),
+//                                                  object: "bad token")
             }
             
             print("网络请求错误：\(error)")
             completion(json: nil, isSuccess: false)
+            return
         }
         
         if  method == .GET {

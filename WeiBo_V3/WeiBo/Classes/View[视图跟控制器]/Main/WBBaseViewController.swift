@@ -61,6 +61,7 @@ class WBBaseViewController: UIViewController ,UITableViewDataSource,UITableViewD
 //        如果不实现任何方法，则默认关闭
      refreshControl?.endRefreshing()
     }
+    
     deinit {
         NotificationCenter.default().removeObserver(self)
     }
@@ -75,12 +76,17 @@ extension WBBaseViewController{
     
     }
     
-    //通知登录
- @objc private  func loginBtnClick()  {
-    NotificationCenter.default().post(name: NSNotification.Name(rawValue:WBUserShouldLoginNotification) , object: nil)
+    //通知用户登录
+    @objc private  func loginBtnClick()  {
+        
+                NotificationCenter.default().post(name: NSNotification.Name(rawValue:WBUserShouldLoginNotification) ,
+                                                  object: nil)
+   
+        
     }
     @objc private func loginSuccess(n : Notification){
-            print("登录成功: \(n)")
+//            print("登录成功: \(n)")
+        WBNetworkManager.shared.userLoging = true
         naviItem.leftBarButtonItem = nil
         naviItem.rightBarButtonItem = nil
             //更新UI  -- >将访客视图替换为表格视图
@@ -89,6 +95,10 @@ extension WBBaseViewController{
         view = nil
         //关键代码：注销通知，重新执行viewDidLoad 会再次注册通知！避免通知重复注册
         NotificationCenter.default().removeObserver(self)
+    }
+    
+    func logout(){
+           WBNetworkManager.shared.userLoging = false
     }
     
 }

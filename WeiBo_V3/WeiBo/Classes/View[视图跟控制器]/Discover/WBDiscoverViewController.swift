@@ -13,6 +13,8 @@ class WBDiscoverViewController: WBBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//         WBNetworkManager.shared.userAccount.access_token = "he000"
+//        print("==修改了token ")
         // Do any additional setup after loading the view.
     }
 

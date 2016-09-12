@@ -54,11 +54,16 @@ extension WBNetworkManager {
     
     //返回微博的未读数量
     func unreadCount(completion:(count : Int) -> () ) {
-        guard let uid = userAccount.uid  else {
+        
+        
+        guard let uid = userAccount.uid
+        else {
             return
         }
         let urlString  = "https://rm.api.weibo.com/2/remind/unread_count.json"
         let params = ["uid" : uid]
+//        request(urlString: urlString, parameters: params) { (json, isSuccess) in
+        
         tokenRequest(urlString: urlString, parameters: params) { (json, isSuccess) in
             print("未读json:\(json) ")
             let dict = json as? [String : AnyObject]
@@ -87,9 +92,32 @@ extension WBNetworkManager {
             print("accessToken :\(json)")
             // [:] 空字典
             self.userAccount.yy_modelSet(with: json as? [String:AnyObject]  ?? [:] )
-            self.userAccount.saveAccount()
-            completion(isSuccess: isSuccess)
+   // 保存用户信息
+            self.loadUserInfo(completion: { (dict) in
+                         print(dict)
+                         self.userAccount.saveAccount()
+                        self.userAccount.yy_modelSet(with: dict)
+                        completion(isSuccess: isSuccess)
+            })
         }
 
     }
+}
+
+// MARK: -用户信息
+extension WBNetworkManager {
+    func loadUserInfo ( completion : (dict: [String:AnyObject]) -> () ){
+        guard let uid  = userAccount.uid else{
+            return
+        }
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        
+        let params  = ["uid" : uid]
+        tokenRequest(urlString: urlString, parameters: params) { (json, isSuccess) in
+            completion(dict: (json as? [String:AnyObject])  ??  [:] )
+        }
+        
+    }
+
+
 }
